@@ -9,26 +9,23 @@ import Foundation
 
 // CaseIterable: forEach등으로 항목을 순회하기 위해
 enum SideMenuOptionViewModel: Int, CaseIterable, Identifiable {
-    case trips
+    case record
     case wallet
     case settings
-    case messages
     
     var title: String {
         switch self{
-        case .trips: return "Your Trips"
-        case .wallet: return "Wallet"
-        case .settings: return "Settings"
-        case .messages: return "Messages"
+        case .record: return "나의 기록"
+        case .wallet: return "지갑"
+        case .settings: return "설정"
         }
     }
     
     var imageName: String {
         switch self {
-        case .trips: return "list.bullet.rectangle"
+        case .record: return "list.clipboard.fill"
         case .wallet: return "creditcard"
         case .settings: return "gear"
-        case .messages: return "bubble.left"
         }
     }
     

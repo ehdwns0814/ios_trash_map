@@ -41,6 +41,6 @@ struct CustomInputField: View {
 
 struct CustomInputField_Previews: PreviewProvider {
     static var previews: some View {
-        CustomInputField(text: .constant(""), title: "Email", placeholder: "name@example.com")
+        CustomInputField(text: .constant(""), title: "이메일", placeholder: "dong01@example.com")
     }
 }

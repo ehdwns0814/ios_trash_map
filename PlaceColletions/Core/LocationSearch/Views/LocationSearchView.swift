@@ -14,7 +14,7 @@ struct LocationSearchView: View {
     
     var body: some View {
         VStack {
-            // header view
+          
             HStack {
                 VStack {
                     Circle()
@@ -30,14 +30,14 @@ struct LocationSearchView: View {
                         .frame(width: 6, height: 6)
                 }
                 VStack {
-                    TextField("Current location", text:
+                    TextField("현재 위치", text:
                         $startLocationText)
                     .frame(height: 32)
                     .background(Color(
                         .systemGroupedBackground))
                     .padding(.trailing)
                     
-                    TextField("Where to?", text:
+                    TextField("목적지", text:
                                 $viewModel.queryFragment)
                     .frame(height: 32)
                     .background(Color(.systemGray4))
@@ -56,15 +56,38 @@ struct LocationSearchView: View {
                 VStack(alignment: .leading) {
                     ForEach(viewModel.results, id: \.self) {
                         result in
-                        LocationSearchResultCell(title:
-                            result.title, subtitle:
-                            result.subtitle)
-                        .onTapGesture {
-                            withAnimation( .spring()) {
-                                viewModel.selectLocation(result)
-                                mapState = .locationSelected
+                        HStack{
+                            //네비게이션으로 네비게이션 뷰가 나오게 설정 @@
+                            VStack{
+                                Image(systemName: "figure.walk.circle")
+                                    .resizable()
+                                    .foregroundColor(.blue)
+                                    .accentColor(.white)
+                                    .frame(width: 40, height: 40)
+                                Text("출발하기")
+                                    .font(.system(size: 15))
+                                    
+                            }
+                            .padding(.leading, 10)
+                            .onTapGesture {
+                                withAnimation( .spring()) {
+                                    viewModel.selectLocation(result)
+                                    mapState = .locationSelected
+                                }
+                            }
+                            
+                            // 지도를 확대하여 근처 위치의 지역을 을 표시
+                            LocationSearchResultCell(title:
+                                result.title, subtitle:
+                                result.subtitle)
+                            .onTapGesture {
+                                withAnimation( .spring()) {
+//                                    viewModel.selectLocation(result)
+//                                    mapState = .locationSelected
+                                }
                             }
                         }
+                        
                     }
                 }
             }

@@ -36,7 +36,7 @@ struct RideRequestView: View {
                 
                 VStack(alignment: .leading, spacing: 24) {
                     HStack {
-                        Text("Current location")
+                        Text("현재 위치")
                             .font(.system(size: 16, weight: .semibold))
                             .foregroundColor(.gray)
                         
@@ -50,7 +50,7 @@ struct RideRequestView: View {
                     .padding(.bottom,10)
                     
                     HStack {
-                        if let location = locationViewModel.selectedUberLocation {
+                        if let location = locationViewModel.selectedLocation {
                             Text(location.title)
                                 .font(.system(size: 16, weight:
                                         .semibold))
@@ -116,35 +116,35 @@ struct RideRequestView: View {
                 .padding(.vertical, 8)
             
             // payment option view
-            HStack(spacing: 12) {
-                Text("Visa")
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .padding(6)
-                    .background(.blue)
-                    .cornerRadius(4)
-                    .foregroundColor(.white)
-                    .padding(.leading)
-                Text("**** 1234")
-                    .fontWeight(.bold)
-                
-                Spacer()
-                
-                Image(systemName: "chevron.right")
-                    .imageScale(.medium)
-                    .padding()
-            }
-            .frame(height: 50)
-            .background(Color.theme.secondaryBackgroundColor)
-            .cornerRadius(10)
-            .padding(.horizontal)
+//            HStack(spacing: 12) {
+//                Text("Visa")
+//                    .font(.subheadline)
+//                    .fontWeight(.semibold)
+//                    .padding(6)
+//                    .background(.blue)
+//                    .cornerRadius(4)
+//                    .foregroundColor(.white)
+//                    .padding(.leading)
+//                Text("**** 1234")
+//                    .fontWeight(.bold)
+//                
+//                Spacer()
+//                
+//                Image(systemName: "chevron.right")
+//                    .imageScale(.medium)
+//                    .padding()
+//            }
+//            .frame(height: 50)
+//            .background(Color.theme.secondaryBackgroundColor)
+//            .cornerRadius(10)
+//            .padding(.horizontal)
             
             
-            //request ride button
+            //장소 저장하기
             Button{
                 
             } label: {
-                Text("CONFIRM RIDE")
+                Text("장소 기억하기")
                     .fontWeight(.bold)
                     .frame(width: UIScreen.main.bounds.width -
                            32, height: 50)

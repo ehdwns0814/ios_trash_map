@@ -10,14 +10,16 @@ import MapKit
 
 class LocationSearchViewModel: NSObject, ObservableObject{
     
-    //MARK: - Properties
-    
+    // 검색어와 가장 가까운 위치를 찾기 위해 사용
     @Published var results = [MKLocalSearchCompletion]()
-    @Published var selectedUberLocation: UberLocation?
+    @Published var selectedLocation: Location?
     @Published var pickupTime: String?
     @Published var dropOffTime: String?
     
+    // 검색 완료 객체
     private let searchCompleter = MKLocalSearchCompleter()
+    
+    // 텍스트 결과 값이 바뀔 때 마다 
     var queryFragment: String = ""{
         didSet {
             searchCompleter.queryFragment = queryFragment
@@ -26,7 +28,6 @@ class LocationSearchViewModel: NSObject, ObservableObject{
     
     var userLocation: CLLocationCoordinate2D?
     
-    // MARK: Lifecycle
     
     override init() {
         super.init()
@@ -34,26 +35,28 @@ class LocationSearchViewModel: NSObject, ObservableObject{
         searchCompleter.queryFragment = queryFragment
     }
     
-    // MARK: - Helpers
-    
+
+    // 
     func selectLocation(_ localSearch: MKLocalSearchCompletion) {
         locationSearch(forLocalSearchCompletion: localSearch) { response, error in
             if let error = error {
-                print("DEBUG: Location search failed with error \(error.localizedDescription)")
+                print("위치검색 실패 에러내용: \(error.localizedDescription)")
                 return
             }
             
             guard let item = response?.mapItems.first else { return }
             let coordinate = item.placemark.coordinate
-            self.selectedUberLocation = UberLocation(title: localSearch.title,
+            self.selectedLocation = Location(title: localSearch.title,
                 coordinate: coordinate)
-            print("DEBUG: Location coordinates \(coordinate)")
+            print("위치 좌표: \(coordinate)")
         }
     }
     
+    //
     func locationSearch(forLocalSearchCompletion localSearch: MKLocalSearchCompletion,
                         completion: @escaping MKLocalSearch.CompletionHandler) {
         let searchRequest = MKLocalSearch.Request()
+        // 검색 결과의 부제인 주소 정보를 넘겨준다
         searchRequest.naturalLanguageQuery = localSearch.title.appending(localSearch.subtitle)
         let search = MKLocalSearch(request: searchRequest)
         
@@ -61,7 +64,7 @@ class LocationSearchViewModel: NSObject, ObservableObject{
     }
     
     func computeRidePrice(forType type: RideType) -> Double {
-        guard let destCoordintate = selectedUberLocation?.coordinate else { return 0.0}
+        guard let destCoordintate = selectedLocation?.coordinate else { return 0.0}
         guard let userCoordinate = self.userLocation else { return 0.0}
         
         let userLocation = CLLocation(latitude: userCoordinate.latitude,
@@ -85,10 +88,11 @@ class LocationSearchViewModel: NSObject, ObservableObject{
         
         directions.calculate { response, error in
             if let error = error {
-                print("DEBUG: Failed to get directions with error \(error.localizedDescription)")
+                print("방향 정보가져오기 실패 에러내용: \(error.localizedDescription)")
                 return
             }
             
+            // 일반적으로 가져오는 루트 중 첫번째 루트가 가장빠르므로 첫 번째 경로를 할당한다
             guard let route =  response?.routes.first else { return }
             self.configurePickupAndDropoffTimes(with: route.expectedTravelTime)
             completion(route)
@@ -104,8 +108,7 @@ class LocationSearchViewModel: NSObject, ObservableObject{
     }
 }
 
-//MARK: - MKLocalSearchCompleterDelegate
-
+//쿼리 조각을 기반으로 검색이 완료 되면 호출된다
 extension LocationSearchViewModel: MKLocalSearchCompleterDelegate {
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter){
         self.results = completer.results

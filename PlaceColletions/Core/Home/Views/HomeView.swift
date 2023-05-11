@@ -27,7 +27,7 @@ struct HomeView: View {
                         mapView
                             .offset(x: showSideMenu ? 316 : 0)
                             .shadow(color: showSideMenu ? .black: .clear, radius: 10 )
-                    }// navigationlink가 발생하였을때 showsideMenu 값을 false로 변경한다.
+                    }// navigationlink가 발생하였을때 showSideMenu 값을 false로 변경한다.
                     .onAppear {
                         showSideMenu = false
                     }

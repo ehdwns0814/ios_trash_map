@@ -30,7 +30,7 @@ struct RegistrationView: View {
                         .padding()
                 }
                 
-                Text("Create new account")
+                Text("새로운 계정 만들기")
                     .font(.system(size: 40))
                     .fontWeight(.semibold)
                     .multilineTextAlignment(.leading)
@@ -41,13 +41,13 @@ struct RegistrationView: View {
                 VStack {
                     VStack(spacing: 56) {
                         CustomInputField(text: $fullname,
-                                         title: "Full Name",
-                                         placeholder: "Enter your name")
+                                         title: "이름",
+                                         placeholder: "이름을 입력해주세요")
                         CustomInputField(text: $email,
-                                         title: "email",
-                                         placeholder: "name@example.com")
+                                         title: "이메일 아이디",
+                                         placeholder: "ex) dong01@example.com")
                         CustomInputField(text: $password,
-                                         title: "password",
+                                         title: "비밀번호",
                                          placeholder: "Enter your password",
                                          isSecureField:true)
                                         
@@ -63,7 +63,7 @@ struct RegistrationView: View {
                             )
                     } label: {
                         HStack{
-                            Text("Sign up ")
+                            Text("가입하기")
                                 .foregroundColor(.black)
                             Image(systemName: "arrow.right")
                                 .foregroundColor(.black)

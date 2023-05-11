@@ -7,7 +7,7 @@
 
 import CoreLocation
 
-struct UberLocation {
+struct Location {
     let title: String
     let coordinate: CLLocationCoordinate2D
 }

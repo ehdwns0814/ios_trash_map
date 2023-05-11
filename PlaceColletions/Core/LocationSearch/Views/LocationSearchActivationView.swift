@@ -10,19 +10,22 @@ import SwiftUI
 struct LocationSearchActivationView: View {
     var body: some View {
         HStack {
-            Rectangle()
-                .fill(Color.black)
-                .frame(width:8, height:8)
-                .padding(.horizontal)
-            Text("Where to?")
+            Image(systemName: "location.fill")
+                .resizable()
+                .foregroundColor(.blue)
+                .frame(width:20, height:20)
+                .padding(.leading, 20)
+                
+            Text("목적지를 선택해주세요")
                 .foregroundColor(Color(.darkGray))
+               
             
             Spacer()
         }
         .frame(width: UIScreen.main.bounds.width - 64,
                height: 50)
         .background(
-            Rectangle()
+            Capsule()
                 .fill(Color.white)
                 .shadow(color: .black, radius: 6)
         )

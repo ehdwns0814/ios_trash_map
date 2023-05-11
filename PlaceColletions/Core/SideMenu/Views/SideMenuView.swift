@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SideMenuView: View {
     
+    @EnvironmentObject var authViewModel: AuthViewModel
     private let user: User
     
     init(user:User) {
@@ -80,6 +81,21 @@ struct SideMenuView: View {
                 }
                 
                 Spacer()
+                
+                // 로그아웃 버튼..
+                Button {
+                    authViewModel.signout()
+                } label:{
+                    Image(systemName: "rectangle.righthalf.inset.filled.arrow.right")
+                        .resizable()
+                        .renderingMode(.template)
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 22, height: 22)
+                    Text("로그 아웃")
+                }
+                .foregroundColor(.primary)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal)
                 
             }
             .padding(.top, 32)

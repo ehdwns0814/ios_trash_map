@@ -29,7 +29,7 @@ struct LoginView: View {
                             .frame(width:200, height:  200)
                         
                         // title
-                        Text("UBer")
+                        Text("PlaceCollections")
                             .foregroundColor(.white)
                             .font(.largeTitle)
                     }
@@ -38,18 +38,18 @@ struct LoginView: View {
                     VStack(spacing: 32){
                         // input field 1
                         CustomInputField(text: $email,
-                                         title: "Email Adrress",
-                                         placeholder: "name")
+                                         title: "이메일 아이디",
+                                         placeholder: "ex) dong01@example.com")
                         
                         // input field 2
                         CustomInputField(text: $password,
-                                         title: "Password",
-                                         placeholder: "Enter your password",
+                                         title: "비밀번호",
+                                         placeholder: "비밀번호를 입력해주세요",
                                         isSecureField: true)
                         Button {
                             
                         } label: {
-                            Text("Forgot Password?")
+                            Text("비밀번호를 잊어버리셨나요?")
                                 .font(.system(size: 12, weight: .semibold))
                                 .foregroundColor(.white)
                                 .padding(.top)
@@ -72,7 +72,7 @@ struct LoginView: View {
                                 .foregroundColor(.white)
                                 .opacity(0.5)
                             
-                            Text("Sign in with social")
+                            Text("소셜 아이디로 로그인하기")
                                 .foregroundColor(.white)
                                 .fontWeight(.semibold)
                             
@@ -109,7 +109,7 @@ struct LoginView: View {
                         viewModel.signIn(withEmail: email, password: password)
                     } label: {
                         HStack{
-                            Text("Sign in ")
+                            Text("로그인")
                                 .foregroundColor(.black)
                             Image(systemName: "arrow.right")
                                 .foregroundColor(.black)

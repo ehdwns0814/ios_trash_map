@@ -15,6 +15,7 @@ struct UberMapViewRepresentable: UIViewRepresentable {
     @Binding var mapState: MapViewState
     @EnvironmentObject var locationViewModel : LocationSearchViewModel
     
+    // 지도를 만드는 역할을 담당 
     func makeUIView(context: Context) -> some UIView {
         mapView.delegate = context.coordinator
         mapView.isRotateEnabled = false
@@ -26,7 +27,7 @@ struct UberMapViewRepresentable: UIViewRepresentable {
      
     //검색 시 업데이트 할때 사용
     func updateUIView(_ uiView: UIViewType, context: Context) {
-        print("DEBUG: Map state is \(mapState)")
+        print("mapState: \(mapState)")
         
         switch mapState {
         case .noInput:
@@ -35,8 +36,9 @@ struct UberMapViewRepresentable: UIViewRepresentable {
         case .searchingForLocation:
             break
         case .locationSelected:
-            if let coordinate = locationViewModel.selectedUberLocation?.coordinate {
-                print("DEBUG: Adding stuff to map..")
+            if let coordinate = locationViewModel.selectedLocation?.coordinate {
+                print("지도에 항목 추가")
+                // 목적지를 주석으로 처리하고
                 context.coordinator.addAndSelectedAnnotation(withCoordinate: coordinate)
                 context.coordinator.configurePolyline(withDestinationCoordinate: coordinate)
             }
@@ -45,6 +47,7 @@ struct UberMapViewRepresentable: UIViewRepresentable {
             break
         }
     }
+    
     
     func makeCoordinator() -> MapCoordinator {
         return MapCoordinator(parent: self)
@@ -57,20 +60,17 @@ extension UberMapViewRepresentable {
     
     class MapCoordinator: NSObject, MKMapViewDelegate {
         
-        //MARK: - Properties
-        
+       
         let parent: UberMapViewRepresentable
         var userLocationCoordinate: CLLocationCoordinate2D?
         var currentRegion: MKCoordinateRegion?
         
-        // MARK: - Lifecycle
-        
+   
         init(parent: UberMapViewRepresentable){
             self.parent = parent
             super.init()
         }
         
-        // MARK: - MKMapViewDelegate
         
         func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
             self.userLocationCoordinate = userLocation.coordinate
@@ -81,9 +81,11 @@ extension UberMapViewRepresentable {
             
             self.currentRegion = region
             
+            // Mapview에서 보이는 지역을 변경
             parent.mapView.setRegion(region, animated: true)
         }
         
+        // 지도에 경로선 그리기
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) ->
             MKOverlayRenderer {
             let polyline = MKPolylineRenderer(overlay: overlay)
@@ -91,12 +93,11 @@ extension UberMapViewRepresentable {
                 polyline.lineWidth = 6
                 return polyline
             }
-        
-        // MARK: - Helpers
-        
+    
+        // 주석 표시하기
         func addAndSelectedAnnotation(withCoordinate coordinate: CLLocationCoordinate2D) {
+            //새롭게 주석을 추가 하면 이전에 추가했던 주석을 지웁니다.
             parent.mapView.removeAnnotations(parent.mapView.annotations)
-            
             let anno = MKPointAnnotation()
             anno.coordinate = coordinate
             parent.mapView.addAnnotation(anno)
