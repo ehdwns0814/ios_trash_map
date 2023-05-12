@@ -6,11 +6,13 @@
 //
 
 import CoreLocation
+import MapKit
 
 class LocationManager: NSObject, ObservableObject {
     private let locationManager = CLLocationManager()
     static let shared = LocationManager()
     @Published var userLocation: CLLocationCoordinate2D?
+    @Published var region = MKCoordinateRegion.defaultRegion()
     
     override init() {
         super.init()
@@ -25,12 +27,22 @@ class LocationManager: NSObject, ObservableObject {
 
 extension LocationManager: CLLocationManagerDelegate {
     
-//    private func checkAuthorization() {
-//        switch locationManager.authorizationStatus {
-//        case .notDetermined:
-//            locationManager.requestWhenInUseAuthorization()
-//        }
-//    }
+    private func checkAuthorization() {
+        
+        switch locationManager.authorizationStatus {
+            case .notDetermined:
+                locationManager.requestWhenInUseAuthorization()
+            case .restricted:
+                print("당신의 위치 정보는 제한되어있습니다.")
+            case .denied:
+                print("당신은 어플이 위치 서비스에 접근하는 것에 동의 하지 않았습니다.")
+            case .authorizedAlways, .authorizedWhenInUse:
+            guard let location = locationManager.location else { return }
+            region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.25, longitudeDelta: 0.25))
+        @unknown default:
+            break
+        }
+    }
     
     // 사용자의 위치를 파악하거나 업데이트 하는 함수
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:
@@ -41,7 +53,11 @@ extension LocationManager: CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation( )
     }
     
-//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-//        checkAuthorization()
-//    }
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        checkAuthorization()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
 }

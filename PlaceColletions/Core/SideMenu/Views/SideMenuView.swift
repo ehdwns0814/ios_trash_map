@@ -42,19 +42,24 @@ struct SideMenuView: View {
                     
                     // become a driver
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("Do more with your account")
+                        Text("내가 간 곳을 기록해 보아요")
                             .font(.footnote)
                         .fontWeight(.semibold)
                         
-                        HStack {
-                            Image(systemName: "dollarsign.square")
-                                .font(.title2)
-                                .imageScale(.medium)
+                        Button {
                             
-                            Text("Make Money Driving")
-                                .font(.system(size: 16, weight: .semibold))
-                                .padding(6)
+                        } label: {
+                            HStack {
+                                Image(systemName: "pencil.line")
+                                    .font(.title2)
+                                    .imageScale(.medium)
+                                
+                                Text("나의 발자국")
+                                    .font(.system(size: 16, weight: .semibold))
+                                    .padding(6)
+                            }
                         }
+
                     }
                     
                     Rectangle()

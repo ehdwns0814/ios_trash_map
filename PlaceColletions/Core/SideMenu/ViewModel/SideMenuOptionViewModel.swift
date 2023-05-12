@@ -15,7 +15,7 @@ enum SideMenuOptionViewModel: Int, CaseIterable, Identifiable {
     
     var title: String {
         switch self{
-        case .record: return "나의 기록"
+        case .record: return "기록 공유"
         case .wallet: return "지갑"
         case .settings: return "설정"
         }
@@ -23,7 +23,7 @@ enum SideMenuOptionViewModel: Int, CaseIterable, Identifiable {
     
     var imageName: String {
         switch self {
-        case .record: return "list.clipboard.fill"
+        case .record: return "list.clipboard"
         case .wallet: return "creditcard"
         case .settings: return "gear"
         }

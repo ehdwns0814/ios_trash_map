@@ -24,7 +24,7 @@ struct LoginView: View {
                     
                     VStack(spacing: -16) {
                         //image
-                        Image("uber-app-icon")
+                        Image("PlaceCollections")
                             .resizable()
                             .frame(width:200, height:  200)
                         

@@ -42,10 +42,10 @@ struct RideRequestView: View {
                         
                         Spacer()
                         
-                        Text(locationViewModel.pickupTime ?? "")
-                            .font(.system(size: 14, weight:
-                                    .semibold))
-                            .foregroundColor(.gray)
+//                        Text(locationViewModel.pickupTime ?? "")
+//                            .font(.system(size: 14, weight:
+//                                    .semibold))
+//                            .foregroundColor(.gray)
                     }
                     .padding(.bottom,10)
                     
@@ -58,10 +58,10 @@ struct RideRequestView: View {
                             
                         Spacer()
                         
-                        Text(locationViewModel.dropOffTime ?? "")
-                            .font(.system(size: 14, weight:
-                                    .semibold))
-                            .foregroundColor(.gray)
+//                        Text(locationViewModel.dropOffTime ?? "")
+//                            .font(.system(size: 14, weight:
+//                                    .semibold))
+//                            .foregroundColor(.gray)
                     }
                 }.padding(.leading, 8)
             }
@@ -127,9 +127,9 @@ struct RideRequestView: View {
 //                    .padding(.leading)
 //                Text("**** 1234")
 //                    .fontWeight(.bold)
-//                
+//
 //                Spacer()
-//                
+//
 //                Image(systemName: "chevron.right")
 //                    .imageScale(.medium)
 //                    .padding()

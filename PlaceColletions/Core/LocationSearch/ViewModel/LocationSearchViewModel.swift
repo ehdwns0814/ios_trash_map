@@ -19,7 +19,7 @@ class LocationSearchViewModel: NSObject, ObservableObject{
     // 검색 완료 객체
     private let searchCompleter = MKLocalSearchCompleter()
     
-    // 텍스트 결과 값이 바뀔 때 마다 
+    // 텍스트 결과 값이 바뀔 때 마다
     var queryFragment: String = ""{
         didSet {
             searchCompleter.queryFragment = queryFragment
@@ -36,7 +36,7 @@ class LocationSearchViewModel: NSObject, ObservableObject{
     }
     
 
-    // 
+    //
     func selectLocation(_ localSearch: MKLocalSearchCompletion) {
         locationSearch(forLocalSearchCompletion: localSearch) { response, error in
             if let error = error {
