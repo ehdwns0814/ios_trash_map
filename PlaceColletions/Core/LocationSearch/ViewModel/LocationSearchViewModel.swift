@@ -13,6 +13,7 @@ class LocationSearchViewModel: NSObject, ObservableObject{
     // 검색어와 가장 가까운 위치를 찾기 위해 사용
     @Published var results = [MKLocalSearchCompletion]()
     @Published var selectedLocation: Location?
+    @Published var tripDistanceMeters: String?
     @Published var pickupTime: String?
     @Published var dropOffTime: String?
     
@@ -63,7 +64,7 @@ class LocationSearchViewModel: NSObject, ObservableObject{
         search.start(completionHandler: completion)
     }
     
-    func computeRidePrice(forType type: RideType) -> Double {
+    func computeDistance() -> Double {
         guard let destCoordintate = selectedLocation?.coordinate else { return 0.0}
         guard let userCoordinate = self.userLocation else { return 0.0}
         
@@ -72,8 +73,8 @@ class LocationSearchViewModel: NSObject, ObservableObject{
         let destination = CLLocation(latitude: destCoordintate.latitude,
                                      longitude: destCoordintate.longitude)
         
-        let tripDistanceInMeters = userLocation.distance(from:  destination)
-        return type.computePrice(for: tripDistanceInMeters)
+        let tripDistanceMeters = userLocation.distance(from:  destination)
+        return tripDistanceMeters
     }
     
     func getDestinationRoute(from userLocation: CLLocationCoordinate2D,
@@ -92,7 +93,7 @@ class LocationSearchViewModel: NSObject, ObservableObject{
                 return
             }
             
-            // 일반적으로 가져오는 루트 중 첫번째 루트가 가장빠르므로 첫 번째 경로를 할당한다
+            // 일반적으로 가져오는 루트 중 첫번째 루트가 가장빠르므로 첫 번째 경로를 할당한다 
             guard let route =  response?.routes.first else { return }
             self.configurePickupAndDropoffTimes(with: route.expectedTravelTime)
             completion(route)
@@ -102,7 +103,7 @@ class LocationSearchViewModel: NSObject, ObservableObject{
     func configurePickupAndDropoffTimes(with expectedTravelTime: Double) {
         let formatter = DateFormatter()
         formatter.dateFormat = "hh:mm a"
-        
+
         pickupTime = formatter.string(from: Date())
         dropOffTime = formatter.string(from: Date() + expectedTravelTime)
     }

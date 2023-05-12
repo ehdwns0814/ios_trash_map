@@ -9,14 +9,7 @@ import Foundation
 
 extension Double {
     
-    private var currencyFormatter: NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.minimumFractionDigits = 2
-        formatter.maximumFractionDigits = 2
-        return formatter
-    }
-    
+    // 거리 형식
     private var distanceFormatter: NumberFormatter {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -25,12 +18,8 @@ extension Double {
         return formatter
     }
     
-    func toCurrency() -> String {
-        return currencyFormatter.string(for: self) ?? ""
-    }
-    
-    func distanceInMilesString() -> String {
-        return distanceFormatter.string(for: self / 1600) ?? ""
+    func distanceInKiloMetersString() -> String {
+        return distanceFormatter.string(for: self / 1000) ?? ""
     }
     
 }

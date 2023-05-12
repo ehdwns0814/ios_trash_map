@@ -82,6 +82,7 @@ struct LocationSearchView: View {
                                 result.subtitle)
                             .onTapGesture {
                                 withAnimation( .spring()) {
+                                    // 하단 맵
 //                                    viewModel.selectLocation(result)
 //                                    mapState = .locationSelected
                                 }

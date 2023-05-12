@@ -15,7 +15,7 @@ class LocalSearchService: ObservableObject {
     let locationManager = LocationManager()
     var cancellables = Set<AnyCancellable>()
     @Published var landmarks: [LandMark] = []
-    
+     
     init() {
         locationManager.$region.assign(to: \.region, on: self)
             .store(in: &cancellables)
@@ -25,6 +25,7 @@ class LocalSearchService: ObservableObject {
         
         let request = MKLocalSearch.Request()
         request.naturalLanguageQuery = query
+        // 특정지역에서만 검색을 원하기 떄문
         request.region = locationManager.region
         
         let search = MKLocalSearch(request: request)

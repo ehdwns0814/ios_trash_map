@@ -49,3 +49,4 @@ enum RideType: Int, CaseIterable, Identifiable {
     }
     
 }
+

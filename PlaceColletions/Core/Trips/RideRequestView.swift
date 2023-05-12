@@ -42,10 +42,6 @@ struct RideRequestView: View {
                         
                         Spacer()
                         
-//                        Text(locationViewModel.pickupTime ?? "")
-//                            .font(.system(size: 14, weight:
-//                                    .semibold))
-//                            .foregroundColor(.gray)
                     }
                     .padding(.bottom,10)
                     
@@ -57,11 +53,6 @@ struct RideRequestView: View {
                         }
                             
                         Spacer()
-                        
-//                        Text(locationViewModel.dropOffTime ?? "")
-//                            .font(.system(size: 14, weight:
-//                                    .semibold))
-//                            .foregroundColor(.gray)
                     }
                 }.padding(.leading, 8)
             }
@@ -69,77 +60,22 @@ struct RideRequestView: View {
             
             Divider()
             
-            // ride type selection view
-            Text("SUGGESTED RIDES")
-                .font(.subheadline)
-                .fontWeight(.semibold)
-                .padding()
-                .foregroundColor(.gray)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-            ScrollView(.horizontal) {
-                HStack(spacing: 12) {
-                    ForEach(RideType.allCases) { type in
-                        VStack(alignment: .leading) {
-                            Image(type.imageName)
-                                .resizable()
-                                .scaledToFit()
-                            
-                            VStack(alignment: .leading, spacing: 4)  {
-                                   Text(type.description)
-                                       .font(.system(size: 14,
-                                        weight:.semibold))
-                                Text(locationViewModel.computeRidePrice(forType: type).toCurrency())
-                                .font(.system(size: 14, weight:
-                                        .semibold))
-                            }
-                            .padding(8)
-                            
-                        }
-                        .frame(width:112, height: 140)
-                        .foregroundColor(type == selectedRideType ? .white : Color.theme.primaryTextColor)
-                        .background(type == selectedRideType ? .blue : Color.theme.secondaryBackgroundColor)
-                        .scaleEffect(type == selectedRideType ?
-                                     1.2 : 1.0)
-                        .cornerRadius(10)
-                        .onTapGesture {
-                            withAnimation(.spring()) {
-                                selectedRideType = type
-                            }
-                        }
-                    }
-                }
+            // 목적지 까지의 거리
+            HStack {
+                Text("목적지 까지의 거리:")
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(.gray)
+                Text(locationViewModel.computeDistance().distanceInKiloMetersString())
+                    .font(.system(size: 14, weight:.semibold))
+                Text("Km")
+                    .font(.system(size: 14, weight:.semibold))
+                Spacer()
             }
-            .padding(.horizontal)
+            .padding(.leading)
             
             Divider()
                 .padding(.vertical, 8)
-            
-            // payment option view
-//            HStack(spacing: 12) {
-//                Text("Visa")
-//                    .font(.subheadline)
-//                    .fontWeight(.semibold)
-//                    .padding(6)
-//                    .background(.blue)
-//                    .cornerRadius(4)
-//                    .foregroundColor(.white)
-//                    .padding(.leading)
-//                Text("**** 1234")
-//                    .fontWeight(.bold)
-//
-//                Spacer()
-//
-//                Image(systemName: "chevron.right")
-//                    .imageScale(.medium)
-//                    .padding()
-//            }
-//            .frame(height: 50)
-//            .background(Color.theme.secondaryBackgroundColor)
-//            .cornerRadius(10)
-//            .padding(.horizontal)
-            
-            
+                        
             //장소 저장하기
             Button{
                 
