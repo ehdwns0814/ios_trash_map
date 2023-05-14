@@ -11,11 +11,13 @@ import MapKit
 class LocationSearchViewModel: NSObject, ObservableObject{
     
     // 검색어와 가장 가까운 위치를 찾기 위해 사용
+    @Published var region: MKCoordinateRegion = MKCoordinateRegion.defaultRegion()
     @Published var results = [MKLocalSearchCompletion]()
     @Published var selectedLocation: Location?
     @Published var tripDistanceMeters: String?
-    @Published var pickupTime: String?
-    @Published var dropOffTime: String?
+    @Published var landmarks: [Landmark] = []
+    let locationManager = LocationManager()
+
     
     // 검색 완료 객체
     private let searchCompleter = MKLocalSearchCompleter()
@@ -34,10 +36,11 @@ class LocationSearchViewModel: NSObject, ObservableObject{
         super.init()
         searchCompleter.delegate = self
         searchCompleter.queryFragment = queryFragment
+//        search(query: queryFragment)
     }
     
 
-    //
+    // 검색어을 받아서 위치 좌표를 찾기
     func selectLocation(_ localSearch: MKLocalSearchCompletion) {
         locationSearch(forLocalSearchCompletion: localSearch) { response, error in
             if let error = error {
@@ -50,6 +53,24 @@ class LocationSearchViewModel: NSObject, ObservableObject{
             self.selectedLocation = Location(title: localSearch.title,
                 coordinate: coordinate)
             print("위치 좌표: \(coordinate)")
+        }
+    }
+    
+    func search(query: String) {
+        let request = MKLocalSearch.Request()
+        // 검색어 전달
+        request.naturalLanguageQuery = query
+        // 현 위치에서 설정한 구역내로 조 회
+        request.region = locationManager.region
+        
+        let search = MKLocalSearch(request: request)
+        search.start { response, error in
+            if let response = response {
+                let mapItems = response.mapItems
+                self.landmarks = mapItems.map {
+                    Landmark(placemark: $0.placemark)
+                }
+            }
         }
     }
     
@@ -93,25 +114,21 @@ class LocationSearchViewModel: NSObject, ObservableObject{
                 return
             }
             
-            // 일반적으로 가져오는 루트 중 첫번째 루트가 가장빠르므로 첫 번째 경로를 할당한다 
+            // 일반적으로 가져오는 루트 중 첫번째 루트가 가장빠르므로 첫 번째 경로를 할당한다
             guard let route =  response?.routes.first else { return }
-            self.configurePickupAndDropoffTimes(with: route.expectedTravelTime)
             completion(route)
         }
     }
     
-    func configurePickupAndDropoffTimes(with expectedTravelTime: Double) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm a"
-
-        pickupTime = formatter.string(from: Date())
-        dropOffTime = formatter.string(from: Date() + expectedTravelTime)
-    }
 }
 
 //쿼리 조각을 기반으로 검색이 완료 되면 호출된다
+//위치 자동 완성
 extension LocationSearchViewModel: MKLocalSearchCompleterDelegate {
-    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter){
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         self.results = completer.results
+        print("locationSearchViewModel 호출")
     }
 }
+
+

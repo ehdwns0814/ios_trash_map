@@ -42,7 +42,9 @@ struct LocationSearchView: View {
                     .frame(height: 32)
                     .background(Color(.systemGray4))
                     .padding(.trailing)
-                     
+                    
+                    
+                    
                 }
             }
             .padding(.horizontal)
@@ -66,7 +68,7 @@ struct LocationSearchView: View {
                                     .frame(width: 40, height: 40)
                                 Text("출발하기")
                                     .font(.system(size: 15))
-                                    
+                                
                             }
                             .padding(.leading, 10)
                             .onTapGesture {
@@ -75,23 +77,24 @@ struct LocationSearchView: View {
                                     mapState = .locationSelected
                                 }
                             }
-                            
                             // 지도를 확대하여 근처 위치의 지역을 을 표시
                             LocationSearchResultCell(title:
                                 result.title, subtitle:
                                 result.subtitle)
                             .onTapGesture {
                                 withAnimation( .spring()) {
-                                    // 하단 맵
-//                                    viewModel.selectLocation(result)
-//                                    mapState = .locationSelected
+                                    //수정 필요
+                                    viewModel.search(query: result.title)
+                                    mapState = .searchComplete
                                 }
                             }
                         }
-                        
                     }
                 }
-            }
+            }.frame(maxWidth: .infinity, maxHeight: 242)
+             
+                
+            
         }
         .background(Color.theme.backgroundColor)
         .background(.white)

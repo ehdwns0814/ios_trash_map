@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct RideRequestView: View {
-    @State private var selectedRideType: RideType = .uberX
     @EnvironmentObject var locationViewModel: LocationSearchViewModel
 
     var body: some View {

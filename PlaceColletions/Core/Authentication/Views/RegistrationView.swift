@@ -16,7 +16,14 @@ struct RegistrationView: View {
     
     var body: some View {
         ZStack{
-            Color(.black)
+            
+            // 회원가입 정보 업로드 후에 작동한다.
+            NavigationLink(destination: ProfilePhotoSelectorView(),
+                            isActive: $viewModel.didAuthenticateUser,
+                            label: { })
+            
+            
+            Color("Profile")
                 .ignoresSafeArea()
             
             VStack(alignment: .leading, spacing: 20) {

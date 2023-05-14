@@ -12,6 +12,8 @@ import FirebaseFirestoreSwift
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var currentUser: User?
+    @Published var didAuthenticateUser  = false
+    private var tempUserSession: FirebaseAuth.User?
     
     init() {
         userSession = Auth.auth().currentUser
@@ -39,14 +41,20 @@ class AuthViewModel: ObservableObject {
             
             // firebase서버에 있는 user 밑의 User와는 다르다
             guard let firebaseUser = result?.user else { return }
-            self.userSession = firebaseUser
+//            self.userSession = firebaseUser
             
             
             let user = User(fullname: fullname, email: email, uid: firebaseUser.uid)
             // 데이터 베이스에 유저 정보를 인코딩하여 보낸다.
             guard let encodedUser = try? Firestore.Encoder().encode(user) else { return }
             
-            Firestore.firestore().collection("users").document(firebaseUser.uid).setData(encodedUser)
+            Firestore.firestore().collection("users")
+                .document(firebaseUser.uid)
+                .setData(encodedUser) { _ in
+                    self.didAuthenticateUser = true
+                }
+            
+            
         }
     }
     
@@ -58,6 +66,18 @@ class AuthViewModel: ObservableObject {
             self.userSession = nil
         } catch let error {
             print("DEBUG: Failed to sign out with error: \(error.localizedDescription)")
+        }
+    }
+    
+    func uploadProfileImage(_ image: UIImage) {
+        guard let uid = tempUserSession?.uid else { return }
+        
+        ImageUploader.uploadImage(image: image) { profileImageUrl in
+            Firestore.firestore().collection("users")
+                .document(uid)
+                .updateData(["profileImageUrl": profileImageUrl]) { _ in
+                    self.userSession = self.tempUserSession
+                }
         }
     }
     
