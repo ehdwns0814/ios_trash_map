@@ -44,17 +44,13 @@ extension HomeView {
                 UberMapViewRepresentable(mapState: $mapState)
                     // 상단의 빈 공간도 꽉 차게
                     .ignoresSafeArea()
-                
-                if mapState == .searchComplete {
-                    
-                } else if mapState == .locationSelected {
-                    
-                }
+        
                
                 
                 // 상단은 검색 하단은 지도뷰
                 if mapState == .searchingForLocation {
                     LocationSearchView(mapState: $mapState)
+                        .environmentObject(authViewModel)
                 
                 } else if mapState == .noInput {
                     LocationSearchActivationView()

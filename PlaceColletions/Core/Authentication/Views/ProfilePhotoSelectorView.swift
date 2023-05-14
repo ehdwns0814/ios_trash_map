@@ -89,7 +89,6 @@ private struct ProfileImageModifier: ViewModifier {
             .foregroundColor(Color("Profile"))
             .scaledToFill()
             .frame(width: 180, height: 180)
-            
     }
 }
 

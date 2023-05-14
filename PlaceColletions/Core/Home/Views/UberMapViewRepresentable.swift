@@ -45,8 +45,6 @@ struct UberMapViewRepresentable: UIViewRepresentable {
             break
         case .polylineAdded:
             break
-        case .searchComplete:
-                break
         }
     }
     
@@ -131,15 +129,15 @@ extension UberMapViewRepresentable {
             }
         }
         
-        func severalAnntationInMap(locations : LocationSearchViewModel){
-            parent.mapView.removeAnnotations(parent.mapView.annotations)
-            for location in locations.landmarks {
-                let annotations = MKPointAnnotation()
-                annotations.title = location.title
-                annotations.coordinate = location.coordinate
-                parent.mapView.addAnnotation(annotations)
-                parent.mapView.selectAnnotation(annotations, animated: true)
-            }
+//        func severalAnntationInMap(locations : LocationSearchViewModel){
+//            parent.mapView.removeAnnotations(parent.mapView.annotations)
+//            for location in locations.landmarks {
+//                let annotations = MKPointAnnotation()
+//                annotations.title = location.title
+//                annotations.coordinate = location.coordinate
+//                parent.mapView.addAnnotation(annotations)
+//                parent.mapView.selectAnnotation(annotations, animated: true)
+//            }
 //            let rect  = self.parent.mapView.mapRectThatFits(locations.region,
 //                                                            edgePadding:.init(top: 64,
 //                                                                              edgePadding:.init(top: 64,
@@ -148,6 +146,6 @@ extension UberMapViewRepresentable {
 //                                                                                         right: 32))
 //            self.parent.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
 
-        }
+//        }
     }
 }

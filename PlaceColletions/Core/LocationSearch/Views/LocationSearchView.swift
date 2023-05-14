@@ -11,6 +11,8 @@ struct LocationSearchView: View {
     @State private var startLocationText = ""
     @Binding var mapState: MapViewState
     @EnvironmentObject var viewModel: LocationSearchViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
+
     
     var body: some View {
         VStack {
@@ -59,39 +61,26 @@ struct LocationSearchView: View {
                     ForEach(viewModel.results, id: \.self) {
                         result in
                         HStack{
-                            //네비게이션으로 네비게이션 뷰가 나오게 설정 @@
-                            VStack{
-                                Image(systemName: "figure.walk.circle")
-                                    .resizable()
-                                    .foregroundColor(.blue)
-                                    .accentColor(.white)
-                                    .frame(width: 40, height: 40)
-                                Text("출발하기")
-                                    .font(.system(size: 15))
-                                
-                            }
-                            .padding(.leading, 10)
+                            // 목적지와 현위치 경로선 표시,
+                            LocationSearchResultCell(
+                                addCallback: viewModel.uploadFavoriteLocation,
+                                title: result.title,
+                                subTitle: result.subtitle,
+                                authViewModel: authViewModel
+                            )
                             .onTapGesture {
                                 withAnimation( .spring()) {
                                     viewModel.selectLocation(result)
                                     mapState = .locationSelected
                                 }
                             }
-                            // 지도를 확대하여 근처 위치의 지역을 을 표시
-                            LocationSearchResultCell(title:
-                                result.title, subtitle:
-                                result.subtitle)
-                            .onTapGesture {
-                                withAnimation( .spring()) {
-                                    //수정 필요
-                                    viewModel.search(query: result.title)
-                                    mapState = .searchComplete
-                                }
-                            }
+                            .padding(.trailing, 10)
+                            Spacer()
+
                         }
                     }
                 }
-            }.frame(maxWidth: .infinity, maxHeight: 242)
+            }
              
                 
             

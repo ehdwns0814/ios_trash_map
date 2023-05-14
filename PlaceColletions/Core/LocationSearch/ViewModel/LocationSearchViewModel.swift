@@ -7,6 +7,8 @@
 
 import Foundation
 import MapKit
+import Firebase
+import FirebaseFirestoreSwift
 
 class LocationSearchViewModel: NSObject, ObservableObject{
     
@@ -14,9 +16,12 @@ class LocationSearchViewModel: NSObject, ObservableObject{
     @Published var region: MKCoordinateRegion = MKCoordinateRegion.defaultRegion()
     @Published var results = [MKLocalSearchCompletion]()
     @Published var selectedLocation: Location?
-    @Published var tripDistanceMeters: String?
-    @Published var landmarks: [Landmark] = []
-    let locationManager = LocationManager()
+    @Published var tripDistanceMeters: String?    
+    @Published var userSession: FirebaseAuth.User?
+    @Published var currentUser: User?
+    @Published var didAuthenticateUser  = false
+    
+    private var tempUserSession: FirebaseAuth.User?
 
     
     // 검색 완료 객체
@@ -55,23 +60,41 @@ class LocationSearchViewModel: NSObject, ObservableObject{
             print("위치 좌표: \(coordinate)")
         }
     }
+//
+//    func search(query: String) {
+//        let request = MKLocalSearch.Request()
+//        // 검색어 전달
+//        request.naturalLanguageQuery = query
+//        // 현 위치에서 설정한 구역내로 조 회
+//        request.region = locationManager.region
+//
+//        let search = MKLocalSearch(request: request)
+//        search.start { response, error in
+//            if let response = response {
+//                let mapItems = response.mapItems
+//                self.landmarks = mapItems.map {
+//                    Landmark(placemark: $0.placemark)
+//                }
+//            }
+//        }
+//    }
     
-    func search(query: String) {
-        let request = MKLocalSearch.Request()
-        // 검색어 전달
-        request.naturalLanguageQuery = query
-        // 현 위치에서 설정한 구역내로 조 회
-        request.region = locationManager.region
-        
-        let search = MKLocalSearch(request: request)
-        search.start { response, error in
-            if let response = response {
-                let mapItems = response.mapItems
-                self.landmarks = mapItems.map {
-                    Landmark(placemark: $0.placemark)
-                }
-            }
+    func uploadFavoriteLocation(title: String, subtitle: String, auth: AuthViewModel){
+        // 현재 접속중인 유저의 uid를 찾는다
+        guard var uid = auth.userSession?.uid else {
+            return
         }
+    
+//        uid = "5NWv13DnEcWmXWJ0zZ54zPgJQc22"
+        let favorite = Favorite(title: title, subtitle: subtitle)
+        // 데이터 베이스에 유저 정보를 인코딩하여 보낸다.
+        guard let encodedFavorite = try? Firestore.Encoder().encode(favorite) else { return }
+        
+        Firestore.firestore().collection("users")
+            .document(uid)
+            .setData(encodedFavorite) { _ in
+                self.didAuthenticateUser = true
+            }
     }
     
     //

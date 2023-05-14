@@ -41,7 +41,7 @@ class AuthViewModel: ObservableObject {
             
             // firebase서버에 있는 user 밑의 User와는 다르다
             guard let firebaseUser = result?.user else { return }
-//            self.userSession = firebaseUser
+            self.userSession = firebaseUser
             
             
             let user = User(fullname: fullname, email: email, uid: firebaseUser.uid)
@@ -53,8 +53,6 @@ class AuthViewModel: ObservableObject {
                 .setData(encodedUser) { _ in
                     self.didAuthenticateUser = true
                 }
-            
-            
         }
     }
     
@@ -87,7 +85,9 @@ class AuthViewModel: ObservableObject {
         Firestore.firestore().collection("users").document(uid).getDocument { snapshot, _ in
             guard let snapshot = snapshot else { return }
             
-            guard let user = try? snapshot.data(as: User.self) else { return }
+            guard let user = try? snapshot.data(as: User.self) else {
+                return
+            }
             self.currentUser = user
         }
     }
