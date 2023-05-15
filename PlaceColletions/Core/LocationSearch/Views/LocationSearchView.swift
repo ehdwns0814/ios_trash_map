@@ -11,8 +11,6 @@ struct LocationSearchView: View {
     @State private var startLocationText = ""
     @Binding var mapState: MapViewState
     @EnvironmentObject var viewModel: LocationSearchViewModel
-    @EnvironmentObject var authViewModel: AuthViewModel
-
     
     var body: some View {
         VStack {
@@ -61,29 +59,20 @@ struct LocationSearchView: View {
                     ForEach(viewModel.results, id: \.self) {
                         result in
                         HStack{
-                            // 목적지와 현위치 경로선 표시,
-                            LocationSearchResultCell(
-                                addCallback: viewModel.uploadFavoriteLocation,
-                                title: result.title,
-                                subTitle: result.subtitle,
-                                authViewModel: authViewModel
-                            )
+                            LocationSearchResultCell(title:
+                                result.title, subtitle:
+                                result.subtitle)
                             .onTapGesture {
                                 withAnimation( .spring()) {
+                                    
                                     viewModel.selectLocation(result)
                                     mapState = .locationSelected
                                 }
                             }
-                            .padding(.trailing, 10)
-                            Spacer()
-
                         }
                     }
                 }
             }
-             
-                
-            
         }
         .background(Color.theme.backgroundColor)
         .background(.white)

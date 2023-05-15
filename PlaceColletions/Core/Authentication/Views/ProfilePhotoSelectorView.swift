@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ProfilePhotoSelectorView: View {
     @State private var showImagePicker = false
+    //UIImage -> UIKit
     @State private var selectedImage: UIImage?
+    // Image -> SwiftUI
     @State private var profileImage: Image?
     @EnvironmentObject var viewModel: AuthViewModel
     
@@ -50,13 +52,15 @@ struct ProfilePhotoSelectorView: View {
                     
                 }
             }
-            //loadImage가 실행되면 창을 닫는다.
+            //loadImage가 실행되면 창을 닫는다. UIkit 이미지를 swiftui 형식으로 받아오는 loadImage함수를 실행
             .sheet(isPresented: $showImagePicker,
                    onDismiss: loadImage){
+                //selectedImage에 ImagePicker에서 선택한 이미지를 담는다
                 ImagePicker(selectedImage: $selectedImage)
             }
             .padding(.top, 44)
             
+            // 이미지가 있다면 계속하기 버튼 띄우기
             if let selectedImage = selectedImage {
                 Button {
                     viewModel.uploadProfileImage(selectedImage)
@@ -83,12 +87,14 @@ struct ProfilePhotoSelectorView: View {
     }
 }
 
+// 이미지 형식 2번 사용하므로 만들었다.
 private struct ProfileImageModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .foregroundColor(Color("Profile"))
             .scaledToFill()
             .frame(width: 180, height: 180)
+            
     }
 }
 
@@ -97,4 +103,5 @@ struct ProfilePhotoSelectorView_Previews: PreviewProvider {
         ProfilePhotoSelectorView()
     }
 }
+
 

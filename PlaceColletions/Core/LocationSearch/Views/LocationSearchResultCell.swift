@@ -9,27 +9,16 @@ import SwiftUI
 
 struct LocationSearchResultCell: View {
     let title: String
-    let subTitle: String
+    let subtitle: String
     @State var isFavorite: Bool = false
-    var addCallback: (_ title: String, _ subtitle: String, _ auth: AuthViewModel)-> Void
-    var authViewModel: AuthViewModel
-    init(addCallback: @escaping (_ title: String, _ subtitle: String, _ authVM: AuthViewModel) -> Void,
-         title: String,
-         subTitle: String,
-         authViewModel: AuthViewModel
-    ) {
-        self.title = title
-        self.subTitle = subTitle
-        self.addCallback = addCallback
-        self.authViewModel = authViewModel
-    }
+    
     var body: some View {
         HStack{
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
                     .font(.body)
                 
-                Text(subTitle)
+                Text(subtitle)
                     .font(.system(size: 15))
                     .foregroundColor(.gray)
                 
@@ -42,12 +31,11 @@ struct LocationSearchResultCell: View {
             Button {
                 // 즐겨찾기 추가 기능
                 isFavorite.toggle()
-                addCallback(title,subTitle,authViewModel)
             } label: {
                 Image(systemName: isFavorite ? "heart.fill" : "heart")
             }
         }
-        .padding(.leading)
+        .padding(.leading, 10)
     }
 }
 

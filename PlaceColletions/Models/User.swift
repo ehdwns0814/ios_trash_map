@@ -8,10 +8,11 @@
 // 데이버 베이스에서 정보는 받을 때는 decode
 
 
-import Foundation
+import FirebaseFirestoreSwift
 
 struct User: Codable {
     let fullname : String
     let email: String
+    let profileImageUrl: String
     let uid: String
 }
