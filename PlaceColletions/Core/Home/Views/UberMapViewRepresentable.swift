@@ -15,7 +15,7 @@ struct UberMapViewRepresentable: UIViewRepresentable {
     @Binding var mapState: MapViewState
     @EnvironmentObject var locationViewModel : LocationSearchViewModel
     
-    // 지도를 만드는 역할을 담당 
+    // 지도를 만드는 역할을 담당
     func makeUIView(context: Context) -> some UIView {
         mapView.delegate = context.coordinator
         mapView.isRotateEnabled = false

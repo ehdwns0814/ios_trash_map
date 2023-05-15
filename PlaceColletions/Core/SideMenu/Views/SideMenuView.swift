@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct SideMenuView: View {
     
@@ -17,12 +18,13 @@ struct SideMenuView: View {
     }
     
     var body: some View {
+        if let user = authViewModel.currentUser {
             VStack(spacing: 40){
                 // header view
                 VStack(alignment: .leading, spacing: 32) {
                     // user info
                     HStack {
-                        Image(systemName: "person.circle")
+                        KFImage(URL(string: user.profileImageUrl))
                             .resizable()
                             .scaledToFill()
                             .clipShape(Circle())
@@ -104,14 +106,15 @@ struct SideMenuView: View {
                 
             }
             .padding(.top, 32)
-        
+
+        }
     }
 }
 
-struct SideMenuView_Previews: PreviewProvider {
-    static var previews: some View {
-        SideMenuView(user: User(fullname: "John",
-                                email: "dong@gmail.com",
-                                uid: "123456"))
-    }
-}
+//struct SideMenuView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SideMenuView(user: User(fullname: "John",
+//                                email: "dong@gmail.com",
+//                                uid: "123456"))
+//    }
+//}

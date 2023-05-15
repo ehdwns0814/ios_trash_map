@@ -53,7 +53,9 @@ class AuthViewModel: ObservableObject {
             print("유저등록 성공")
             print("User는 \(self.userSession)")
             
-            let user = User(fullname: fullname, email: email, uid: firebaseUser.uid)
+            let user = ["email": email,
+                        "fullname": fullname]
+            
             // 데이터 베이스에 유저 정보를 인코딩
             guard let encodedUser = try? Firestore.Encoder().encode(user) else { return }
             
@@ -95,16 +97,16 @@ class AuthViewModel: ObservableObject {
         guard let uid = self.userSession?.uid else { return }
         // 현재 로그인 된 유저의 snapshot을 돌려받고
         
-        service.fetchUser(withUid: uid)
-        
-        Firestore.firestore().collection("users").document(uid).getDocument { snapshot, _ in
-            guard let snapshot = snapshot else { return }
-
-            guard let user = try? snapshot.data(as: User.self) else {
-                return
-            }
+        service.fetchUser(withUid: uid) { user in
             self.currentUser = user
         }
+        
     }
 }
+ 
+
+ 
+
+
+ 
  

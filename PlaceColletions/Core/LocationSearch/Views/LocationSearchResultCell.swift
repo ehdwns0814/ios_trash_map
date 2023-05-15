@@ -27,15 +27,18 @@ struct LocationSearchResultCell: View {
             }
             .padding(.leading, 8)
             .padding(.vertical, 8)
-            
-            Button {
-                // 즐겨찾기 추가 기능
-                isFavorite.toggle()
-            } label: {
-                Image(systemName: isFavorite ? "heart.fill" : "heart")
+            VStack{
+                Button {
+                    // 즐겨찾기 추가 기능
+                    isFavorite.toggle()
+                } label: {
+                    Image(systemName: isFavorite ? "heart.fill" : "heart")
+                }
             }
+            .padding(.trailing, 10)
+            .padding(.horizontal)
         }
-        .padding(.leading, 10)
+        .padding(.leading)
     }
 }
 
@@ -45,3 +48,4 @@ struct LocationSearchResultCell: View {
 //                subtitle: "123 Main St")
 //    }
 //}
+
