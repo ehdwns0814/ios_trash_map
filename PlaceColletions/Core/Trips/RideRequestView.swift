@@ -50,7 +50,6 @@ struct RideRequestView: View {
                                 .font(.system(size: 16, weight:
                                         .semibold))
                         }
-                            
                         Spacer()
                     }
                 }.padding(.leading, 8)

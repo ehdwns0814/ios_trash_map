@@ -14,6 +14,11 @@ struct LocationSearchResultCell: View {
     
     var body: some View {
         HStack{
+            Image(systemName: "figure.walk.circle")
+                .resizable()
+                .foregroundColor(.blue)
+                .accentColor(.white)
+                .frame(width: 40, height: 40)
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
                     .font(.body)

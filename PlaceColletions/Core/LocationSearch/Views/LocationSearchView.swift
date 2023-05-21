@@ -14,7 +14,6 @@ struct LocationSearchView: View {
     
     var body: some View {
         VStack {
-          
             HStack {
                 VStack {
                     Circle()
@@ -64,7 +63,6 @@ struct LocationSearchView: View {
                                 result.subtitle)
                             .onTapGesture {
                                 withAnimation( .spring()) {
-                                    
                                     viewModel.selectLocation(result)
                                     mapState = .locationSelected
                                 }

@@ -10,12 +10,10 @@ import MapKit
 
 class LocationSearchViewModel: NSObject, ObservableObject{
     
-    // 검색어와 가장 가까운 위치를 찾기 위해 사용
-
     @Published var results = [MKLocalSearchCompletion]()
+    // 위치 property를 published하면 mapview가 알아 챈다.
     @Published var selectedLocation: Location?
     @Published var tripDistanceMeters: String?
-
 
     
     // 검색 완료 객체
@@ -35,7 +33,6 @@ class LocationSearchViewModel: NSObject, ObservableObject{
         super.init()
         searchCompleter.delegate = self
         searchCompleter.queryFragment = queryFragment
-//        search(query: queryFragment)
     }
     
 
@@ -57,7 +54,7 @@ class LocationSearchViewModel: NSObject, ObservableObject{
     
  
     
-    //
+    // 위치검색
     func locationSearch(forLocalSearchCompletion localSearch: MKLocalSearchCompletion,
                         completion: @escaping MKLocalSearch.CompletionHandler) {
         let searchRequest = MKLocalSearch.Request()
@@ -102,7 +99,6 @@ class LocationSearchViewModel: NSObject, ObservableObject{
             completion(route)
         }
     }
-    
 }
 
 //쿼리 조각을 기반으로 검색이 완료 되면 호출된다

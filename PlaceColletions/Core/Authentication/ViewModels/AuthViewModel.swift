@@ -9,7 +9,6 @@ import SwiftUI
 import Firebase
 
 
-
 class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     @Published var didAuthenticateUser = false
@@ -27,7 +26,7 @@ class AuthViewModel: ObservableObject {
     func signIn(withEmail email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { result , error in
             if let error = error {
-                print("DEBUG: Failed to sign in with error \(error.localizedDescription)")
+                print("로그인 오류: \(error.localizedDescription)")
                 return
             }
          
@@ -40,7 +39,7 @@ class AuthViewModel: ObservableObject {
     func registerUser(withEmail email: String, password: String, fullname: String){
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {
-                print("DEBUG: Failed to sign up with error \(error.localizedDescription)")
+                print("회원가입 오류: \(error.localizedDescription)")
                 return
             }
             // 에러가 발생하지 않는 다면 다음 문자을 실행
@@ -56,7 +55,7 @@ class AuthViewModel: ObservableObject {
             let user = ["email": email,
                         "fullname": fullname]
             
-            // 데이터 베이스에 유저 정보를 인코딩
+            // 유저 정보를 인코딩
             guard let encodedUser = try? Firestore.Encoder().encode(user) else { return }
             
             // 데이터 업로드
@@ -81,6 +80,7 @@ class AuthViewModel: ObservableObject {
         }
     }
     
+    // 프로필이미 업로드 하기
     func uploadProfileImage(_ image: UIImage) {
         guard let uid = tempUserSession?.uid else { return }
         

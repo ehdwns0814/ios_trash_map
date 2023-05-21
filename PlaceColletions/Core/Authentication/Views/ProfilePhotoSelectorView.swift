@@ -87,7 +87,7 @@ struct ProfilePhotoSelectorView: View {
     }
 }
 
-// 이미지 형식 2번 사용하므로 만들었다.
+// 이미지 형식 반복 사용하므로 만들었다.
 private struct ProfileImageModifier: ViewModifier {
     func body(content: Content) -> some View {
         content

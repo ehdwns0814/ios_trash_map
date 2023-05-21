@@ -21,7 +21,6 @@ struct RegistrationView: View {
             NavigationLink(destination: ProfilePhotoSelectorView(),
                             isActive: $viewModel.didAuthenticateUser,
                             label: { })
-                    
             Color("Profile")
                 .ignoresSafeArea()
             

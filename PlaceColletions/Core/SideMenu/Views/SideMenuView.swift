@@ -20,9 +20,9 @@ struct SideMenuView: View {
     var body: some View {
         if let user = authViewModel.currentUser {
             VStack(spacing: 40){
-                // header view
+             
                 VStack(alignment: .leading, spacing: 32) {
-                    // user info
+                    // 유저 정보
                     HStack {
                         KFImage(URL(string: user.profileImageUrl))
                             .resizable()
@@ -38,13 +38,12 @@ struct SideMenuView: View {
                                 .font(.system(size: 14))
                                 .accentColor(Color.theme.primaryTextColor)
                                 .opacity(0.77)
-                            
                         }
                     }
                     
-                    // become a driver
+      
                     VStack(alignment: .leading, spacing: 16) {
-                        Text("내가 간 곳을 기록해 보아요")
+                        Text("나의 위치 기록")
                             .font(.footnote)
                         .fontWeight(.semibold)
                         
@@ -56,7 +55,7 @@ struct SideMenuView: View {
                                     .font(.title2)
                                     .imageScale(.medium)
                                 
-                                Text("나의 발자국")
+                                Text("내가 간곳")
                                     .font(.system(size: 16, weight: .semibold))
                                     .padding(6)
                             }
@@ -73,7 +72,7 @@ struct SideMenuView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 16)
                          
-               // option list
+               
                 VStack {
                     ForEach(SideMenuOptionViewModel.allCases, id: \.self) { viewModel in
                         NavigationLink(value: viewModel) {
@@ -84,7 +83,14 @@ struct SideMenuView: View {
                 }
                 .navigationDestination(for: SideMenuOptionViewModel.self) {
                     viewModel in
-                    Text(viewModel.title)
+                    switch viewModel {
+                    case .favorite:
+                        Text("즐겨찾기")
+                    case .wallet:
+                        Text("지갑")
+                    case .settings:
+                        SettingView()
+                    }
                 }
                 
                 Spacer()

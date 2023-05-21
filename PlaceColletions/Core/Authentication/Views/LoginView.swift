@@ -19,9 +19,7 @@ struct LoginView: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                    
                     // image and title
-                    
                     VStack(spacing: -16) {
                         //image
                         Image("PlaceCollections")
@@ -34,14 +32,13 @@ struct LoginView: View {
                             .font(.largeTitle)
                     }
                     
-                    // input fields
+                    
                     VStack(spacing: 32){
                         // input field 1
                         CustomInputField(text: $email,
                                          title: "이메일 아이디",
                                          placeholder: "ex) dong01@example.com")
                         
-                        // input field 2
                         CustomInputField(text: $password,
                                          title: "비밀번호",
                                          placeholder: "비밀번호를 입력해주세요",
@@ -63,9 +60,9 @@ struct LoginView: View {
                         
                    
 
-                    // social sign in view
+                    // 페이스북, 구글 로그인
                     VStack {
-                        // dividers + text
+                        
                         HStack(spacing: 24) {
                             Rectangle()
                                 .frame(width: 76, height: 1)
@@ -81,7 +78,7 @@ struct LoginView: View {
                                 .foregroundColor(.white)
                                 .opacity(0.5)
                         }
-                        // sign up buttons
+                        
                         HStack(spacing: 24) {
                             Button {
                                 
@@ -104,7 +101,7 @@ struct LoginView: View {
                     
                     Spacer()
                     
-                    // sign in button
+                    // 로그인 버튼
                     Button {
                         viewModel.signIn(withEmail: email, password: password)
                     } label: {
@@ -120,8 +117,7 @@ struct LoginView: View {
                     .cornerRadius(10)
 
                     
-                    // sign up button
-                    
+                    // 회원가입 버튼
                     Spacer()
                     
                     NavigationLink {

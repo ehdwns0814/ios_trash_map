@@ -18,8 +18,6 @@ struct LocationSearchActivationView: View {
                 
             Text("목적지를 선택해주세요")
                 .foregroundColor(Color(.darkGray))
-               
-            
             Spacer()
         }
         .frame(width: UIScreen.main.bounds.width - 64,

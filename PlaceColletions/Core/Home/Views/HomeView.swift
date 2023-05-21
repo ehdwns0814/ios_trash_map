@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var mapState = MapViewState.noInput
+    // 쓰레기 타입 선택
+    @State private var trashType = TrashType.generalTrash
     @State private var showSideMenu = false
     @EnvironmentObject var locationViewModel: LocationSearchViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
@@ -41,25 +43,55 @@ extension HomeView {
     var mapView: some View {
         ZStack(alignment: .bottom){
             ZStack(alignment: .top) {
-                UberMapViewRepresentable(mapState: $mapState)
+                UberMapViewRepresentable(mapState: $mapState, trashType: $trashType)
                     // 상단의 빈 공간도 꽉 차게
                     .ignoresSafeArea()
-        
-               
-                
+
                 // 상단은 검색 하단은 지도뷰
                 if mapState == .searchingForLocation {
                     LocationSearchView(mapState: $mapState)
                         .environmentObject(authViewModel)
                 
                 } else if mapState == .noInput {
-                    LocationSearchActivationView()
-                        .padding(.top, 72)
-                        .onTapGesture {
-                            withAnimation(.spring()){
-                                mapState = .searchingForLocation
+                    VStack{
+                        LocationSearchActivationView()
+                            .padding(.top, 72)
+                            .onTapGesture {
+                                withAnimation(.spring()){
+                                    mapState = .searchingForLocation
+                                }
+                            }
+                        // 쓰레기 타입 버튼
+                        HStack {
+                            Button {
+                                trashType = .generalTrash
+                            } label: {
+                                Text("일반쓰레기")
+                                    .padding()
+                                    .foregroundColor(.white)
+                                    .background(.blue)
+                                    .clipShape(Capsule())
+                            }
+                            Button {
+                                trashType = .recyclableWaste
+                            } label: {
+                                Text("재활용 쓰레기")
+                                    .padding()
+                                    .foregroundColor(.white)
+                                    .background(.blue)
+                                    .clipShape(Capsule())
+                            }
+                            Button {
+                                trashType = .cigaretteButt
+                            } label: {
+                                Text("담배꽁초")
+                                    .padding()
+                                    .foregroundColor(.white)
+                                    .background(.blue)
+                                    .clipShape(Capsule())
                             }
                         }
+                    }
                 }
                 
                 MapViewActionButton(mapState: $mapState

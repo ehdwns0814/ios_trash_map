@@ -25,6 +25,6 @@ struct SideMenuOptionView: View {
 
 struct SideMenuOptionView_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuOptionView(viewModel: .record)
+        SideMenuOptionView(viewModel: .favorite)
     }
 }
