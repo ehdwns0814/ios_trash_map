@@ -71,6 +71,7 @@ extension HomeView {
                                     .foregroundColor(.white)
                                     .background(.blue)
                                     .clipShape(Capsule())
+                                
                             }
                             Button {
                                 trashType = .recyclableWaste

@@ -19,11 +19,11 @@ struct ContentView: View {
                         HStack{
                             Text("#"+String(format: "%03d",SeoulTrashCan.id))
                                 .font(.subheadline)
-                            Text(SeoulTrashCan.자치구명)
+                            Text(SeoulTrashCan.borough)
                                 .font(.headline)
                             Spacer()
                             
-                            reusableTypeView(thisTrashType: SeoulTrashCan.쓰레기종류)
+                            reusableTypeView(thisTrashType: SeoulTrashCan.trashType)
 
                         }
                     }

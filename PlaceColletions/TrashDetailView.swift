@@ -21,9 +21,11 @@ struct TrashDetailView: View {
                 HStack{
                     Text("Name:")
                     Spacer()
-                    Text(thisTrash.위치)
+                    Text(thisTrash.detailRoadName)
                 }
             }
+        }.onAppear{
+//            thisTrash = loadCSVData(trashType: .generalTrash)
         }
     }
 }

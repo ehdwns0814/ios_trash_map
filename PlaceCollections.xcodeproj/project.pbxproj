@@ -39,6 +39,7 @@
 		0E4289BD2A0BB3DB00D9DD51 /* SideMenuOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4289BC2A0BB3DB00D9DD51 /* SideMenuOptionView.swift */; };
 		0E5969782A11E987001A9712 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E5969772A11E987001A9712 /* GoogleService-Info.plist */; };
 		0E59697B2A1205C6001A9712 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0E59697A2A1205C6001A9712 /* Kingfisher */; };
+		0E5E7B1E2A1B37610018E6F4 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5E7B1D2A1B37610018E6F4 /* Landmark.swift */; };
 		0E72DF762A116D6300A956ED /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E72DF752A116D6300A956ED /* UserService.swift */; };
 		0ED2DBB02A18AEE70046E46E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED2DBAF2A18AEE70046E46E /* ContentView.swift */; };
 		0ED2DBB32A1900550046E46E /* TrashDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED2DBB22A1900550046E46E /* TrashDetailView.swift */; };
@@ -81,6 +82,7 @@
 		0E4289BA2A0BA98E00D9DD51 /* SideMenuOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionViewModel.swift; sourceTree = "<group>"; };
 		0E4289BC2A0BB3DB00D9DD51 /* SideMenuOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionView.swift; sourceTree = "<group>"; };
 		0E5969772A11E987001A9712 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0E5E7B1D2A1B37610018E6F4 /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
 		0E72DF752A116D6300A956ED /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		0E9630812A0BDF990091E9F6 /* PlaceCollections-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PlaceCollections-Info.plist"; sourceTree = "<group>"; };
 		0ED2DBAF2A18AEE70046E46E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				0EFBC4902A17875C00709C25 /* SeoulTrashCan.swift */,
 				0EFBC4922A17D03B00709C25 /* HandleCSV.swift */,
 				0ED2DBB42A191E1D0046E46E /* TrashType.swift */,
+				0E5E7B1D2A1B37610018E6F4 /* Landmark.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				0E4289A32A0B7A6D00D9DD51 /* MapViewState.swift in Sources */,
 				0E4289BB2A0BA98E00D9DD51 /* SideMenuOptionViewModel.swift in Sources */,
 				0ED2DBB02A18AEE70046E46E /* ContentView.swift in Sources */,
+				0E5E7B1E2A1B37610018E6F4 /* Landmark.swift in Sources */,
 				0E4289892A0B794100D9DD51 /* LocationSearchViewModel.swift in Sources */,
 				0EFBC4932A17D03B00709C25 /* HandleCSV.swift in Sources */,
 				0E4289942A0B79CA00D9DD51 /* HomeView.swift in Sources */,

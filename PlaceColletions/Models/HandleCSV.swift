@@ -5,7 +5,8 @@
 //  Created by 동준 on 2023/05/20.
 //
 
-import Foundation
+import SwiftUI
+import MapKit
 
 
 func cleanRows(file: String) -> String {
@@ -77,12 +78,9 @@ func loadCSVData(trashType: TrashType) -> [SeoulTrashCan] {
                     break
                 }
             }
-            
-//            let lineStruct = SeoulTrashCan.init(raw: csvColumns)
-            
         }
     }
     
     return csvToStruct
 }
- 
+

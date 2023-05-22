@@ -27,10 +27,10 @@ struct PlaceCollectionApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            HomeView()
-//                .environmentObject(locationViewModel)
-//                .environmentObject(authViewModel)
-            ContentView(TrashCandex: loadCSVData(trashType: .recyclableWaste))
+            HomeView()
+                .environmentObject(locationViewModel)
+                .environmentObject(authViewModel)
+//            ContentView(TrashCandex: loadCSVData(trashType: .cigaretteButt))
         }
     }
 }
