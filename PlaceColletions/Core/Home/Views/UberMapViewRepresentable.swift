@@ -49,6 +49,16 @@ struct UberMapViewRepresentable: UIViewRepresentable {
         case .polylineAdded:
             break
         }
+        
+        switch trashType {
+            
+        case .generalTrash:
+            break
+        case .recyclableWaste:
+            break
+        case .cigaretteButt:
+            break
+        }
     }
     
     
