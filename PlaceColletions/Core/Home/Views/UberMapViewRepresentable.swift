@@ -11,10 +11,7 @@ import MapKit
 struct UberMapViewRepresentable: UIViewRepresentable {
     
     let mapView = MKMapView()
-    @State private var addresses: [String] = []
-    @State private var annotations: [MKPointAnnotation] = []
-    @Binding var mapState: MapViewState 
-    @Binding var trashType: TrashType
+    @Binding var mapState: MapViewState
     @EnvironmentObject var locationViewModel : LocationSearchViewModel
     
     // 지도를 만드는 역할을 담당
@@ -32,6 +29,13 @@ struct UberMapViewRepresentable: UIViewRepresentable {
         print("mapState: \(mapState)")
         
         switch mapState {
+          
+        case .selectedTrashType:
+            for annotation in locationViewModel.annotations {
+                let coordinate = annotation.coordinate
+                context.coordinator.addAndSelectedAnnotation(withCoordinate: coordinate)
+            }
+            break
         case .noInput:
             context.coordinator.clearMapViewAndRecenterOnUserLocation()
             break
@@ -50,15 +54,6 @@ struct UberMapViewRepresentable: UIViewRepresentable {
             break
         }
         
-        switch trashType {
-            
-        case .generalTrash:
-            break
-        case .recyclableWaste:
-            break
-        case .cigaretteButt:
-            break
-        }
     }
     
     
@@ -105,7 +100,6 @@ extension UberMapViewRepresentable {
                 return polyline
             }
         
-       
         
         
     
@@ -142,46 +136,5 @@ extension UberMapViewRepresentable {
                 parent.mapView.setRegion(currentRegion, animated: true)
             }
         }
-        
-        
-        // 읽어온 csv파일에서 도로명주소 데이터를 추출한다.
-        func extractAddresses(csv: [SeoulTrashCan]) -> [String] {
-            
-            var addresses: [String] = []
-
-            for row in csv {
-                addresses.append(row.detailRoadName)
-            }
-            
-            return addresses
-        }
-         
-        // 주소로 부터 위치를 받아오는 함수
-        func getLocationFromAddress() -> CLLocationCoordinate2D {
-            
-            return CLLocationCoordinate2D()
-        }
-
-
-        func convertAddressesToCoordinates(_address: [String]) {
-            let geocoder = CLGeocoder()
-            
-            for address in addresses {
-                geocoder.geocodeAddressString(address) { (placemarks, error) in
-                    if let error = error {
-                        print("Geocoding error: \(error.localizedDescription)")
-                        return
-                    }
-                    
-                    if let placemark = placemarks?.first,
-                       let location = placemark.location {
-                        let annotation = MKPointAnnotation()
-                        annotation.coordinate = location.coordinate
-                        annotations.append(annotation)
-                    }
-                }
-            }
-        }
-
     }
 }

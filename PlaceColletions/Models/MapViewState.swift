@@ -8,6 +8,7 @@
 import Foundation
 
 enum MapViewState {
+    case selectedTrashType
     case noInput
     case searchingForLocation
     case locationSelected

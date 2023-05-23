@@ -10,11 +10,15 @@ import MapKit
 
 class LocationSearchViewModel: NSObject, ObservableObject{
     
+    @Published var addresses: [String] = []
+    @Published var annotations: [MKPointAnnotation] = []
     @Published var results = [MKLocalSearchCompletion]()
     // 위치 property를 published하면 mapview가 알아 챈다.
     @Published var selectedLocation: Location?
     @Published var tripDistanceMeters: String?
 
+    
+   
     
     // 검색 완료 객체
     private let searchCompleter = MKLocalSearchCompleter()
@@ -97,6 +101,40 @@ class LocationSearchViewModel: NSObject, ObservableObject{
             // 일반적으로 가져오는 루트 중 첫번째 루트가 가장빠르므로 첫 번째 경로를 할당한다
             guard let route =  response?.routes.first else { return }
             completion(route)
+        }
+    }
+    
+    
+    // 읽어온 csv파일에서 도로명주소 데이터를 추출한다.
+    func extractAddresses(csv: [SeoulTrashCan]) -> [String] {
+        
+        var addresses: [String] = []
+
+        for row in csv {
+            addresses.append(row.detailRoadName)
+        }
+        
+        return addresses
+    }
+     
+    func convertAddressesToCoordinates() {
+        let geocoder = CLGeocoder()
+        
+        for address in addresses {
+            geocoder.geocodeAddressString(address) { (placemarks, error) in
+                if let error = error {
+                    print("Geocoding error: \(error.localizedDescription)")
+                    return
+                }
+            
+                
+                if let placemark = placemarks?.first,
+                   let location = placemark.location {
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = location.coordinate
+                    self.annotations.append(annotation)
+                }
+            }
         }
     }
 }

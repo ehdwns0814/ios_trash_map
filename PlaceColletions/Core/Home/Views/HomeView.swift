@@ -43,9 +43,11 @@ extension HomeView {
     var mapView: some View {
         ZStack(alignment: .bottom){
             ZStack(alignment: .top) {
-                UberMapViewRepresentable(mapState: $mapState, trashType: $trashType)
+                UberMapViewRepresentable(mapState: $mapState)
                     // 상단의 빈 공간도 꽉 차게
                     .ignoresSafeArea()
+                
+                
 
                 // 상단은 검색 하단은 지도뷰
                 if mapState == .searchingForLocation {
@@ -65,6 +67,9 @@ extension HomeView {
                         HStack {
                             Button {
                                 trashType = .generalTrash
+                                let csv = loadCSVData(trashType: trashType)
+                                locationViewModel.addresses = locationViewModel.extractAddresses(csv: csv)
+                                locationViewModel.convertAddressesToCoordinates()
                             } label: {
                                 Text("일반쓰레기")
                                     .padding()
@@ -74,7 +79,9 @@ extension HomeView {
                                 
                             }
                             Button {
-                                trashType = .recyclableWaste
+                                let csv = loadCSVData(trashType: .recyclableWaste)
+                                locationViewModel.addresses = locationViewModel.extractAddresses(csv: csv)
+                                locationViewModel.convertAddressesToCoordinates()
                             } label: {
                                 Text("재활용 쓰레기")
                                     .padding()
@@ -83,7 +90,9 @@ extension HomeView {
                                     .clipShape(Capsule())
                             }
                             Button {
-                                trashType = .cigaretteButt
+                                let csv = loadCSVData(trashType: .cigaretteButt)
+                                locationViewModel.addresses = locationViewModel.extractAddresses(csv: csv)
+                                locationViewModel.convertAddressesToCoordinates()
                             } label: {
                                 Text("담배꽁초")
                                     .padding()
