@@ -7,18 +7,21 @@
 
 import Foundation
 import MapKit
+import CoreLocation
 
 class LocationSearchViewModel: NSObject, ObservableObject{
     
+    @Published var region: MKCoordinateRegion = MKCoordinateRegion.defaultRegion()
     @Published var addresses: [String] = []
-    @Published var annotations: [MKPointAnnotation] = []
+    @Published var annotations: [CLLocationCoordinate2D] = []
     @Published var results = [MKLocalSearchCompletion]()
     // 위치 property를 published하면 mapview가 알아 챈다.
     @Published var selectedLocation: Location?
+    @Published var selectedLocationArr: [Location] = []
     @Published var tripDistanceMeters: String?
+    @Published var searchResults: [MKLocalSearchCompletion] = []
+    let locationManager = LocationManager()
 
-    
-   
     
     // 검색 완료 객체
     private let searchCompleter = MKLocalSearchCompleter()
@@ -53,6 +56,23 @@ class LocationSearchViewModel: NSObject, ObservableObject{
             self.selectedLocation = Location(title: localSearch.title,
                 coordinate: coordinate)
             print("위치 좌표: \(coordinate)")
+        }
+    }
+    
+    //도로명 주소들 위치 배열 받기
+    func selectLocationArr(_ localSearchs: [MKLocalSearchCompletion]) {
+        for localSearch in localSearchs {
+            locationSearch(forLocalSearchCompletion: localSearch) { response, error in
+                if let error = error {
+                    print("위치검색 실패 에러내용: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let item = response?.mapItems.first else { return }
+                let coordinate = item.placemark.coordinate
+                let location = Location(title: localSearch.title, coordinate: coordinate)
+                self.selectedLocationArr.append(location)
+            }
         }
     }
     
@@ -107,37 +127,140 @@ class LocationSearchViewModel: NSObject, ObservableObject{
     
     // 읽어온 csv파일에서 도로명주소 데이터를 추출한다.
     func extractAddresses(csv: [SeoulTrashCan]) -> [String] {
-        
-        var addresses: [String] = []
+        var addresses: [String] = []      
 
         for row in csv {
             addresses.append(row.detailRoadName)
         }
-        
         return addresses
     }
-     
-    func convertAddressesToCoordinates() {
-        let geocoder = CLGeocoder()
-        
+    
+    
+    
+//    func convertToCoordinates(addresses: [String]) -> [CLLocationCoordinate2D] {
+//           var coordinates: [CLLocationCoordinate2D] = []
+//
+//           for address in addresses {
+//               let searchRequest = MKLocalSearch.Request()
+//               searchRequest.naturalLanguageQuery = address
+//
+//               let search = MKLocalSearch(request: searchRequest)
+//               search.start { response, error in
+//                   if let error = error {
+//                       print("주소 변환 오류: \(error.localizedDescription)")
+//                       return
+//                   }
+//
+//                   if let coordinate = response?.mapItems.first?.placemark.coordinate {
+//                       coordinates.append(coordinate)
+//                   }
+//               }
+//           }
+//
+//           return coordinates
+//       }
+    
+        // search landmark를 반환해주는 함수
+    func search() {
         for address in addresses {
-            geocoder.geocodeAddressString(address) { (placemarks, error) in
-                if let error = error {
-                    print("Geocoding error: \(error.localizedDescription)")
-                    return
-                }
-            
-                
-                if let placemark = placemarks?.first,
-                   let location = placemark.location {
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = location.coordinate
-                    self.annotations.append(annotation)
-                }
+            let completion = MKLocalSearchCompletion()
+            completion.setValue(address, forKey: "title")
+            self.searchResults.append(completion)
             }
         }
     }
-}
+    //        var landmarks: [Location] = []
+            
+            
+//            let request = MKLocalSearch.Request()
+//            request.naturalLanguageQuery = address
+//            request.region = locationManager.region
+//
+//            let search = MKLocalSearch(request: request)
+//            search.start { response, error in
+//                guard let response = response else {
+//                    return
+//                }
+//
+//                let mapItems = response.mapItems
+//
+//                for item in mapItems {
+//                    let location = Location(title: item.name ?? "", coordinate: item.placemark.coordinate)
+//                    landmarks.append(location)
+//                }
+                
+                // Update the searchResults array
+    
+    
+//    func convertToCoordinates(addresses: [String]) -> [CLLocationCoordinate2D] {
+//            var coordinates: [CLLocationCoordinate2D] = []
+//            let geocoder = CLGeocoder()
+//
+//            for address in addresses {
+//                geocoder.geocodeAddressString(address) { (placemarks, error) in
+//                    if let error = error {
+//                        print("주소 변환 오류: \(error.localizedDescription)")
+//                        return
+//                    }
+//
+//                    if let placemark = placemarks?.first,
+//                       let coordinate = placemark.location?.coordinate {
+//                        coordinates.append(coordinate)
+//                    }
+//                }
+//            }
+//
+//            return coordinates
+//        }
+    
+    
+//    // 검색어을 받아서 위치 좌표를 찾기
+//    func selectLocation(_ localSearch: MKLocalSearchCompletion) {
+//        locationSearch(forLocalSearchCompletion: localSearch) { response, error in
+//            if let error = error {
+//                print("위치검색 실패 에러내용: \(error.localizedDescription)")
+//                return
+//            }
+//
+//            guard let item = response?.mapItems.first else { return }
+//            let coordinate = item.placemark.coordinate
+//            self.selectedLocation = Location(title: localSearch.title,
+//                coordinate: coordinate)
+//            print("위치 좌표: \(coordinate)")
+//        }
+//    }
+    
+    // addresses의 형식을 MKLocalSearchCompletion으로 바꾼다.
+//    func createLocalSearchRequest(for address: [String]) -> MKLocalSearch.Request {
+//        let request = MKLocalSearch.Request()
+//        request.naturalLanguageQuery = address
+//        return request
+//    }
+     
+//    func convertAddressesToCoordinates() {
+//        let geocoder = CLGeocoder()
+//        let locale =  Locale(identifier: "KR")
+//
+//        for address in addresses {
+//            geocoder.geocodeAddressString(address,in :nil, preferredLocale: locale) { (placemarks, error) in
+//                if let error = error {
+//                    print("Geocoding error: \(error.localizedDescription)")
+//                    return
+//                }
+//
+//
+//                if let placemark = placemarks?.first,
+//                   let location = placemark.location {
+//                    let annotation = MKPointAnnotation()
+//                    annotation.coordinate = location.coordinate
+//                    self.annotations.append(annotation)
+//                } else {
+//                    print("LocationSearchViewModel: 도로명 주소 검색 시 위치정보가 없음")
+//                }
+//            }
+//        }
+//    }
+//}
 
 //쿼리 조각을 기반으로 검색이 완료 되면 호출된다
 //위치 자동 완성

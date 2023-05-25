@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import CoreLocation
 
 struct UberMapViewRepresentable: UIViewRepresentable {
     
@@ -31,9 +32,15 @@ struct UberMapViewRepresentable: UIViewRepresentable {
         switch mapState {
           
         case .selectedTrashType:
-            for annotation in locationViewModel.annotations {
-                let coordinate = annotation.coordinate
-                context.coordinator.addAndSelectedAnnotation(withCoordinate: coordinate)
+            // 이전에 찍혀 있던 주석 제거
+            mapView.removeAnnotations(mapView.annotations)
+            for address in locationViewModel.selectedLocationArr {
+                // 주석 찍기
+                let coordinate = address.coordinate
+                    let anno = MKPointAnnotation()
+                    anno.coordinate = address.coordinate
+                    mapView.addAnnotation(anno)
+                    mapView.selectAnnotation(anno, animated: true)
             }
             break
         case .noInput:
@@ -61,6 +68,22 @@ struct UberMapViewRepresentable: UIViewRepresentable {
         return MapCoordinator(parent: self)
     }
     
+    func geocodeAddress(_ address: String) -> CLLocationCoordinate2D? {
+        let geocoder = CLGeocoder()
+        var coordinate: CLLocationCoordinate2D?
+        
+        geocoder.geocodeAddressString(address) { placemarks, error in
+            if let error = error {
+                print("주소를 변환하는 동안 오류가 발생했습니다: \(error.localizedDescription)")
+                return
+            }
+            
+            if let placemark = placemarks?.first {
+                coordinate = placemark.location?.coordinate
+            }
+        }
+        return coordinate
+    }
 }
 
 // 이 코디네이터는 기본적으로 우리 사이의 중개자처럼 사용
@@ -136,5 +159,7 @@ extension UberMapViewRepresentable {
                 parent.mapView.setRegion(currentRegion, animated: true)
             }
         }
+        
+        
     }
 }

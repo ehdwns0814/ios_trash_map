@@ -3,4 +3,350 @@
    uuid = "092F4421-507A-4B0D-BC3D-A25E6769698D"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CA7C84C9-1D84-406D-B7F5-BA89BD679442"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PlaceColletions/Core/LocationSearch/ViewModel/LocationSearchViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "LocationSearchViewModel"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B4AB808B-9C0F-43D6-801A-F78794AD6773"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PlaceColletions/Core/LocationSearch/ViewModel/LocationSearchViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "extractAddresses(csv:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1DC9CB0E-D6D3-4B5A-B38B-221C87432DDF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PlaceColletions/Core/Home/Views/HomeView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "mapView"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1BF119CF-AA6C-45BC-8B5F-B84F8F88BC7F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PlaceColletions/Core/Home/Views/UberMapViewRepresentable.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "updateUIView(_:context:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E1EA41E1-6F56-4A02-898B-8DD4F56CB9AF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PlaceColletions/Core/LocationSearch/ViewModel/LocationSearchViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
+            landmarkName = "LocationSearchViewModel"
+            landmarkType = "21">
+            <Locations>
+               <Location
+                  uuid = "E1EA41E1-6F56-4A02-898B-8DD4F56CB9AF - 6689f15148f68be2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlaceCollections.LocationSearchViewModel.completerDidUpdateResults(__C.MKLocalSearchCompleter) -&gt; ()"
+                  moduleName = "PlaceCollections"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dongjun/Documents/PlaceColletions/PlaceColletions/Core/LocationSearch/ViewModel/LocationSearchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "270"
+                  endingLineNumber = "270"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  uuid = "E1EA41E1-6F56-4A02-898B-8DD4F56CB9AF - 6689f15148f68b83"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlaceCollections.LocationSearchViewModel.completerDidUpdateResults(__C.MKLocalSearchCompleter) -&gt; ()"
+                  moduleName = "PlaceCollections"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dongjun/Documents/PlaceColletions/PlaceColletions/Core/LocationSearch/ViewModel/LocationSearchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "269"
+                  endingLineNumber = "269"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "29E182EF-AD11-4089-93B3-5D4F77FC2675"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PlaceColletions/Core/Home/Views/HomeView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "mapView"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D336B1E7-63E1-4874-86A6-B8BBC0AE2086"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PlaceColletions/Core/Home/Views/HomeView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "mapView"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "44D01D60-7621-4005-B89F-6C1981D32F66"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PlaceColletions/Core/Home/Views/HomeView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "mapView"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2D3FA0A0-3342-46F4-A486-3FFA4D69335D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PlaceColletions/Core/LocationSearch/ViewModel/LocationSearchViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
+            landmarkName = "search()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2AC05C43-6D67-48EE-A3DC-A56DA010D7AC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PlaceColletions/Core/LocationSearch/ViewModel/LocationSearchViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "LocationSearchViewModel"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "2AC05C43-6D67-48EE-A3DC-A56DA010D7AC - e6a2d228b35de468"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of PlaceCollections.LocationSearchViewModel.searchResults : Swift.Array&lt;__C.MKLocalSearchCompletion&gt;"
+                  moduleName = "PlaceCollections"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dongjun/Documents/PlaceColletions/PlaceColletions/Core/LocationSearch/ViewModel/LocationSearchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "2AC05C43-6D67-48EE-A3DC-A56DA010D7AC - c3da7ce0b2965ddc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlaceCollections.LocationSearchViewModel.searchResults.getter : Swift.Array&lt;__C.MKLocalSearchCompletion&gt;"
+                  moduleName = "PlaceCollections"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dongjun/Documents/PlaceColletions/PlaceColletions/Core/LocationSearch/ViewModel/LocationSearchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "2AC05C43-6D67-48EE-A3DC-A56DA010D7AC - 37e12dbe40821c8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlaceCollections.LocationSearchViewModel.searchResults.setter : Swift.Array&lt;__C.MKLocalSearchCompletion&gt;"
+                  moduleName = "PlaceCollections"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dongjun/Documents/PlaceColletions/PlaceColletions/Core/LocationSearch/ViewModel/LocationSearchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "140">
+               </Location>
+               <Location
+                  uuid = "2AC05C43-6D67-48EE-A3DC-A56DA010D7AC - dbf4d69aab56d2db"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlaceCollections.LocationSearchViewModel.searchResults.modify : Swift.Array&lt;__C.MKLocalSearchCompletion&gt;"
+                  moduleName = "PlaceCollections"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dongjun/Documents/PlaceColletions/PlaceColletions/Core/LocationSearch/ViewModel/LocationSearchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "2AC05C43-6D67-48EE-A3DC-A56DA010D7AC - 7c2a5d9ed3661744"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlaceCollections.LocationSearchViewModel.searchResults.modify : Swift.Array&lt;__C.MKLocalSearchCompletion&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "PlaceCollections"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dongjun/Documents/PlaceColletions/PlaceColletions/Core/LocationSearch/ViewModel/LocationSearchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "2AC05C43-6D67-48EE-A3DC-A56DA010D7AC - 869786ef31c8ddb7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlaceCollections.LocationSearchViewModel.$searchResults.getter : Combine.Published&lt;Swift.Array&lt;__C.MKLocalSearchCompletion&gt;&gt;.Publisher"
+                  moduleName = "PlaceCollections"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dongjun/Documents/PlaceColletions/PlaceColletions/Core/LocationSearch/ViewModel/LocationSearchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "2AC05C43-6D67-48EE-A3DC-A56DA010D7AC - c32db8813cfd00a3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlaceCollections.LocationSearchViewModel.$searchResults.setter : Combine.Published&lt;Swift.Array&lt;__C.MKLocalSearchCompletion&gt;&gt;.Publisher"
+                  moduleName = "PlaceCollections"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dongjun/Documents/PlaceColletions/PlaceColletions/Core/LocationSearch/ViewModel/LocationSearchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "216">
+               </Location>
+               <Location
+                  uuid = "2AC05C43-6D67-48EE-A3DC-A56DA010D7AC - 3980639bb4b5f103"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlaceCollections.LocationSearchViewModel.$searchResults.modify : Combine.Published&lt;Swift.Array&lt;__C.MKLocalSearchCompletion&gt;&gt;.Publisher"
+                  moduleName = "PlaceCollections"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dongjun/Documents/PlaceColletions/%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  uuid = "2AC05C43-6D67-48EE-A3DC-A56DA010D7AC - f7f27d80a67ae61e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlaceCollections.LocationSearchViewModel.$searchResults.modify : Combine.Published&lt;Swift.Array&lt;__C.MKLocalSearchCompletion&gt;&gt;.Publisher with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "PlaceCollections"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dongjun/Documents/PlaceColletions/PlaceColletions/Core/LocationSearch/ViewModel/LocationSearchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "2AC05C43-6D67-48EE-A3DC-A56DA010D7AC - f84294a1e984ba82"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PlaceCollections.LocationSearchViewModel.init() -&gt; PlaceCollections.LocationSearchViewModel"
+                  moduleName = "PlaceCollections"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/dongjun/Documents/PlaceColletions/PlaceColletions/Core/LocationSearch/ViewModel/LocationSearchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "22"
+                  endingLineNumber = "22"
+                  offsetFromSymbolStart = "1476">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
