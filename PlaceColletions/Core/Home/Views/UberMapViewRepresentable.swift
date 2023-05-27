@@ -30,6 +30,8 @@ struct UberMapViewRepresentable: UIViewRepresentable {
     func updateUIView(_ uiView: UIViewType, context: Context) {
         print("mapState: \(mapState)")
         
+        
+    
         switch mapState {
           
         case .selectedTrashType:
@@ -61,8 +63,7 @@ struct UberMapViewRepresentable: UIViewRepresentable {
     
     
     func makeCoordinator() -> MapCoordinator {
-//        return MapCoordinator(parent: self)
-        return MapCoordinator(parent: self, mapState: $mapState, locationViewModel: locationViewModel)
+        return MapCoordinator(parent: self)
     }
     
     func geocodeAddress(_ address: String) -> CLLocationCoordinate2D? {
@@ -87,18 +88,13 @@ struct UberMapViewRepresentable: UIViewRepresentable {
 extension UberMapViewRepresentable {
     class MapCoordinator: NSObject, MKMapViewDelegate {
 
-        @Binding var mapState: MapViewState
-        @ObservedObject var locationViewModel: LocationSearchViewModel
-        
         let parent: UberMapViewRepresentable
         var userLocationCoordinate: CLLocationCoordinate2D?
         var currentRegion: MKCoordinateRegion?
         
    
-        init(parent: UberMapViewRepresentable,mapState: Binding<MapViewState>, locationViewModel: LocationSearchViewModel){
+        init(parent: UberMapViewRepresentable){
             self.parent = parent
-            _mapState = mapState
-            self.locationViewModel = locationViewModel
             super.init()
         }
         
@@ -109,6 +105,7 @@ extension UberMapViewRepresentable {
                    let annoCoordinate = annotation.coordinate
                    let annoTitle = annotation.title;
                    let unwrappedTitle: String = annoTitle ?? ""
+                   print("title:\(annoTitle) coordinate: \(annoCoordinate)")
                    // isClickedAnnotation
 //                   isClickedAnnotation = true
 //                   parent.locationViewModel.selectLocationFromAnnotation(annoTitle: unwrappedTitle, localSearchs: annoCoordinate)

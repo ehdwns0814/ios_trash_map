@@ -195,6 +195,7 @@ extension HomeView {
                                         .padding()
                             HStack{
                                 Button {
+                                        mapState = .noInput
                                         let csv = loadCSVData()
                                         if csv.isEmpty {
                                             noPlace = true

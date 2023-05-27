@@ -54,7 +54,6 @@
 		0EF165522A0EDE5200E8F6BA /* ImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF165512A0EDE5200E8F6BA /* ImageUploader.swift */; };
 		0EFBC48E2A17865800709C25 /* SeoulTrashCan.csv in Resources */ = {isa = PBXBuildFile; fileRef = 0EFBC48D2A17865800709C25 /* SeoulTrashCan.csv */; };
 		0EFBC4912A17875C00709C25 /* SeoulTrashCan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFBC4902A17875C00709C25 /* SeoulTrashCan.swift */; };
-		0EFBC4932A17D03B00709C25 /* HandleCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFBC4922A17D03B00709C25 /* HandleCSV.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,7 +101,6 @@
 		0EF165512A0EDE5200E8F6BA /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		0EFBC48D2A17865800709C25 /* SeoulTrashCan.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SeoulTrashCan.csv; sourceTree = "<group>"; };
 		0EFBC4902A17875C00709C25 /* SeoulTrashCan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulTrashCan.swift; sourceTree = "<group>"; };
-		0EFBC4922A17D03B00709C25 /* HandleCSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleCSV.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,7 +345,6 @@
 				0E4289A62A0B7A9500D9DD51 /* Location.swift */,
 				0E4289B32A0B8ECB00D9DD51 /* User.swift */,
 				0EFBC4902A17875C00709C25 /* SeoulTrashCan.swift */,
-				0EFBC4922A17D03B00709C25 /* HandleCSV.swift */,
 				0ED2DBB42A191E1D0046E46E /* TrashType.swift */,
 				0E5E7B1D2A1B37610018E6F4 /* Landmark.swift */,
 			);
@@ -520,7 +517,6 @@
 				0ED2DBB02A18AEE70046E46E /* ContentView.swift in Sources */,
 				0E5E7B1E2A1B37610018E6F4 /* Landmark.swift in Sources */,
 				0E4289892A0B794100D9DD51 /* LocationSearchViewModel.swift in Sources */,
-				0EFBC4932A17D03B00709C25 /* HandleCSV.swift in Sources */,
 				0E4289942A0B79CA00D9DD51 /* HomeView.swift in Sources */,
 				0E42898F2A0B799100D9DD51 /* LocationSearchResultCell.swift in Sources */,
 				0EF1654D2A0ED77200E8F6BA /* ProfilePhotoSelectorView.swift in Sources */,

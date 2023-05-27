@@ -12,8 +12,6 @@ import SwiftUI
 
 class LocationSearchViewModel: NSObject, ObservableObject{
     
-    @Published var selectedAnnotationTitle: String = ""
-    @Published var selectedAnnotationCoordinate: CLLocationCoordinate2D?
     @Published var region: MKCoordinateRegion = MKCoordinateRegion.defaultRegion()
     @Published var addresses: [String] = []
     @Published var coordinates: [CLLocationCoordinate2D] = []
@@ -83,11 +81,18 @@ class LocationSearchViewModel: NSObject, ObservableObject{
         }
     }
     
+//    func clickedAnnotation(title:String, coordinate: CLLocationCoordinate2D){
+//        location = Location(title: title, coordinate: coordinate)
+////        self.selectedLocation = location
+//    }
+    
+    
     //도로명 주소들 위치 배열 받기
-//    func selectLocationFromAnnotation(annoTitle: String, localSearchs: CLLocationCoordinate2D) {
+//    func selectLocationFromAnnotation(annoTitle: String, localSearchs: CLLocationCoordinate2D), completion: @escaping(Location) -> Void){
 //            let coordinate = localSearchs
 //            let title = annoTitle
-//            self.selectedLocation = Location(title: title, coordinate: coordinate)
+//            let point: Location = Location(title: title, coordinate: coordinate)
+//
 //    }
 ////
  
@@ -180,8 +185,7 @@ class LocationSearchViewModel: NSObject, ObservableObject{
 //쿼리 조각을 기반으로 검색이 완료 되면 호출된다
 //위치 자동 완성
 extension LocationSearchViewModel: MKLocalSearchCompleterDelegate {
-    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        self.results = completer.results
+    func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {        self.results = completer.results
         print("locationSearchViewModel 호출")
     }
 }
