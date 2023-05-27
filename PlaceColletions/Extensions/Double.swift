@@ -18,7 +18,7 @@ extension Double {
         return formatter
     }
     
-    func distanceInKiloMetersString() -> String {
+    func distanceInMetersString() -> String {
         return distanceFormatter.string(for: self / 1000) ?? ""
     }
     

@@ -12,6 +12,7 @@ import CoreLocation
 struct UberMapViewRepresentable: UIViewRepresentable {
     
     let mapView = MKMapView()
+    
     @Binding var mapState: MapViewState
     @EnvironmentObject var locationViewModel : LocationSearchViewModel
     
@@ -32,16 +33,12 @@ struct UberMapViewRepresentable: UIViewRepresentable {
         switch mapState {
           
         case .selectedTrashType:
-            // 이전에 찍혀 있던 주석 제거
-            mapView.removeAnnotations(mapView.annotations)
-            for address in locationViewModel.selectedLocationArr {
+           
+            for address in locationViewModel.coordinates {
                 // 주석 찍기
-                let coordinate = address.coordinate
-                    let anno = MKPointAnnotation()
-                    anno.coordinate = address.coordinate
-                    mapView.addAnnotation(anno)
-                    mapView.selectAnnotation(anno, animated: true)
+                context.coordinator.addAndSelectedAnnotations(withCoordinate: address)
             }
+//            locationViewModel.arraysInitialization()
             break
         case .noInput:
             context.coordinator.clearMapViewAndRecenterOnUserLocation()
@@ -60,12 +57,12 @@ struct UberMapViewRepresentable: UIViewRepresentable {
         case .polylineAdded:
             break
         }
-        
     }
     
     
     func makeCoordinator() -> MapCoordinator {
-        return MapCoordinator(parent: self)
+//        return MapCoordinator(parent: self)
+        return MapCoordinator(parent: self, mapState: $mapState, locationViewModel: locationViewModel)
     }
     
     func geocodeAddress(_ address: String) -> CLLocationCoordinate2D? {
@@ -90,14 +87,32 @@ struct UberMapViewRepresentable: UIViewRepresentable {
 extension UberMapViewRepresentable {
     class MapCoordinator: NSObject, MKMapViewDelegate {
 
+        @Binding var mapState: MapViewState
+        @ObservedObject var locationViewModel: LocationSearchViewModel
+        
         let parent: UberMapViewRepresentable
         var userLocationCoordinate: CLLocationCoordinate2D?
         var currentRegion: MKCoordinateRegion?
         
    
-        init(parent: UberMapViewRepresentable){
+        init(parent: UberMapViewRepresentable,mapState: Binding<MapViewState>, locationViewModel: LocationSearchViewModel){
             self.parent = parent
+            _mapState = mapState
+            self.locationViewModel = locationViewModel
             super.init()
+        }
+        
+        // 주석클릭시 정보
+        func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+               if let annotation = view.annotation as?  MKPointAnnotation {
+                   // Retrieve information associated with the selected annotation
+                   let annoCoordinate = annotation.coordinate
+                   let annoTitle = annotation.title;
+                   let unwrappedTitle: String = annoTitle ?? ""
+                   // isClickedAnnotation
+//                   isClickedAnnotation = true
+//                   parent.locationViewModel.selectLocationFromAnnotation(annoTitle: unwrappedTitle, localSearchs: annoCoordinate)
+            }
         }
         
         // 현재 위치를 알려주는
@@ -111,7 +126,7 @@ extension UberMapViewRepresentable {
             self.currentRegion = region
             
             // Mapview에서 보이는 지역을 변경
-            parent.mapView.setRegion(region, animated: true)
+//            parent.mapView.setRegion(region, animated: true)
         }
         
         // configurePolyline이 끝난 후에 지도에 경로선을 그려준다
@@ -160,6 +175,13 @@ extension UberMapViewRepresentable {
             }
         }
         
-        
+        func addAndSelectedAnnotations(withCoordinate coordinate: CLLocationCoordinate2D) {
+            
+            let anno = MKPointAnnotation()
+            anno.coordinate = coordinate
+            parent.mapView.addAnnotation(anno)
+            parent.mapView.selectAnnotation(anno, animated: true)
+           
+        }
     }
 }

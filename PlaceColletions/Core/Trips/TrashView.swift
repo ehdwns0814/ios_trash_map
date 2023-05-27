@@ -1,13 +1,13 @@
 //
-//  RideRequestView.swift
-//  PlaceColletions
+//  trashView.swift
+//  PlaceCollections
 //
-//  Created by 동준 on 2023/05/10.
+//  Created by 동준 on 2023/05/26.
 //
 
 import SwiftUI
 
-struct RideRequestView: View {
+struct TrashView: View {
     @EnvironmentObject var locationViewModel: LocationSearchViewModel
 
     var body: some View {
@@ -65,7 +65,7 @@ struct RideRequestView: View {
                     .foregroundColor(.gray)
                 Text(locationViewModel.computeDistance().distanceInMetersString())
                     .font(.system(size: 14, weight:.semibold))
-                Text("Km")
+                Text("km")
                     .font(.system(size: 14, weight:.semibold))
                 Spacer()
             }
@@ -74,18 +74,7 @@ struct RideRequestView: View {
             Divider()
                 .padding(.vertical, 8)
                         
-            //장소 저장하기
-            Button{
-                
-            } label: {
-                Text("장소 기억하기")
-                    .fontWeight(.bold)
-                    .frame(width: UIScreen.main.bounds.width -
-                           32, height: 50)
-                    .background(.blue)
-                    .cornerRadius(10)
-                    .foregroundColor(.white)
-            }
+            
         }
         .padding(.bottom, 24)
         .background(Color.theme.backgroundColor)
@@ -93,8 +82,8 @@ struct RideRequestView: View {
     }
 }
 
-struct RideRequestView_Previews: PreviewProvider {
+struct TrashView_Previews: PreviewProvider {
     static var previews: some View {
-        RideRequestView()
+        TrashView()
     }
 }

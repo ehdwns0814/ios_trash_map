@@ -34,9 +34,9 @@ struct MapViewActionButton: View {
     
     func actionForState(_ state: MapViewState) {
         switch state {
-        case .noInput, .selectedTrashType:
+        case .noInput:
             showSideMenu.toggle()
-        case .searchingForLocation:
+        case .searchingForLocation, .selectedTrashType:
             mapState = .noInput
         case .locationSelected, .polylineAdded:
             mapState = .noInput

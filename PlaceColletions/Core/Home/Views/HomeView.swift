@@ -6,16 +6,23 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct HomeView: View {
+    @State private var isGeocodingInProgress = false
+    @State private var isClickedAnnotation = false
     @State private var mapState = MapViewState.noInput
     @State private var selectedtrashType: String = "일반쓰레기"
     @State private var selectedDistrict: String = "강남구"
     @State private var showSideMenu = false
+    @State private var trashMenu = false
+    @State private var noPlace = false
+
+    
     @EnvironmentObject var locationViewModel: LocationSearchViewModel
     @EnvironmentObject var authViewModel: AuthViewModel
     
-    let districts = ["강남구", "강동구", "강북구", "강서", "관악구", "광진구", "구로구", "금천구", "노원구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구", "중랑구"]
+    let districts = ["강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구", "노원구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구", "중랑구"]
     
     let trashs = ["일반쓰레기","재활용쓰레기","담배꽁초"]
     
@@ -68,6 +75,51 @@ struct HomeView: View {
         
         return csvToStruct
     }
+    
+    func geocodeAddress(address: String, completion: @escaping (CLLocationCoordinate2D?) -> Void) {
+            let geocoder = CLGeocoder()
+            geocoder.geocodeAddressString(address) { placemarks, error in
+                guard let placemark = placemarks?.first,
+                      let location = placemark.location
+                else {
+                    completion(nil)
+                    return
+                }
+                let coordinate = location.coordinate
+                completion(coordinate)
+            }
+        }
+        
+        func convertToCoordinates(addressArray: [String], completion: @escaping ([CLLocationCoordinate2D]) -> Void) {
+            var coordinates: [CLLocationCoordinate2D] = []
+            let dispatchGroup = DispatchGroup()
+            
+            for address in addressArray {
+                dispatchGroup.enter()
+                geocodeAddress(address: address) { coordinate in
+                    if let coordinate = coordinate {
+                        coordinates.append(coordinate)
+                    }
+                    dispatchGroup.leave()
+                }
+            }
+            
+            dispatchGroup.notify(queue: .main) {
+                completion(coordinates)
+            }
+        }
+    
+    func geocodeAddresses() {
+        isGeocodingInProgress = true
+
+        convertToCoordinates(addressArray: locationViewModel.addresses) { convertedCoordinates in
+            locationViewModel.coordinates = convertedCoordinates
+            self.isGeocodingInProgress = false
+            mapState = .selectedTrashType
+        }
+    }
+    
+    
 
 
         
@@ -100,14 +152,14 @@ extension HomeView {
         ZStack(alignment: .bottom){
             ZStack(alignment: .top) {
                 UberMapViewRepresentable(mapState: $mapState)
-                    // 상단의 빈 공간도 꽉 차게
+                // 상단의 빈 공간도 꽉 차게
                     .ignoresSafeArea()
-
+                
                 // 상단은 검색 하단은 지도뷰
                 if mapState == .searchingForLocation {
                     LocationSearchView(mapState: $mapState)
                         .environmentObject(authViewModel)
-                
+                    
                 } else if mapState == .noInput {
                     VStack{
                         LocationSearchActivationView()
@@ -120,61 +172,82 @@ extension HomeView {
                     }
                 }
                 
-                // 쓰레기 타입 버튼
-                HStack {
-                    VStack{
-                        Picker(selection: $selectedDistrict, label: Text("자치구")) {
-                                        ForEach(districts, id: \.self) { district in
-                                            Text(district).tag(district)
+                if mapState == .noInput || mapState == .selectedTrashType {
+                    // 쓰레기 타입 버튼
+                    VStack {
+                        HStack {
+                            Picker(selection: $selectedDistrict, label: Text("자치구")) {
+                                            ForEach(districts, id: \.self) { district in
+                                                Text(district).tag(district)
+                                            }
                                         }
-                                    }
-                                    .pickerStyle(DefaultPickerStyle())
-                                    .background(Color.yellow)
-                                    .padding()
-                                    
-                                    Text("선택한 자치구: \(selectedDistrict)")
+                                        .pickerStyle(DefaultPickerStyle())
+                                        .background(Color.yellow)
                                         .padding()
+
+                            Picker(selection: $selectedtrashType, label: Text("쓰레기타입")) {
+                                                ForEach(trashs, id: \.self) { trash in
+                                                    Text(trash).tag(trash)
+                                                }
+                                            }
+                                        .pickerStyle(DefaultPickerStyle())
+                                        .background(Color.yellow)
+                                        .padding()
+                            HStack{
+                                Button {
+                                        let csv = loadCSVData()
+                                        if csv.isEmpty {
+                                            noPlace = true
+                                            // 2초 타이머
+                                            Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false)  { _ in
+                                                noPlace = false
+                                            }
+                                        } else{
+                                            locationViewModel.addresses = locationViewModel.extractAddresses(csv: csv)
+                                            geocodeAddresses()
+                                            trashMenu = true
+                                        }
+                                } label: {
+                                    Image(systemName: "magnifyingglass.circle")
+                                        .resizable()
+                                        .foregroundColor(.blue)
+                                        .accentColor(.white)
+                                        .frame(width: 40, height: 40)
+                                }
+                                if isGeocodingInProgress {
+                                    ProgressView()
+                                }
+                            }
+                        }
+                        .frame(width: UIScreen.main.bounds.width - 64,
+                               height: 50)
+                        .background(
+                            Capsule()
+                                .fill(Color.white)
+                                .shadow(color: .black, radius: 6)
+                        )
+                    .padding(.top, trashMenu ? 72 : 144)
                     }
                     
-                    VStack{
-                        Picker(selection: $selectedtrashType, label: Text("쓰레기타입")) {
-                                        ForEach(trashs, id: \.self) { trash in
-                                            Text(trash).tag(trash)
-                                        }
-                                    }
-                                    .pickerStyle(DefaultPickerStyle())
-                                    .background(Color.yellow)
-                                    .padding()
-                                    
-                                    Text("선택한 쓰레기: \(selectedtrashType)")
-                                        .padding()
+                    if noPlace {
+                        Text("해당되는 쓰레기통은 현재 없습니다.")
+                            .padding()
+                            .background(Color.yellow)
+                            .cornerRadius(10)
                     }
-                    Button {
-                            let csv = loadCSVData()
-                            locationViewModel.addresses = locationViewModel.extractAddresses(csv: csv)
-                        // String -> MKLocalsearchCompletion으로
-                            locationViewModel.search()
-                        locationViewModel.selectLocationArr(locationViewModel.searchResults)
-                            
-                        //
-                            mapState = .selectedTrashType
-                    } label: {
-                        Image(systemName: "magnifyingglass.circle")
-                            .resizable()
-                            .foregroundColor(.blue)
-                            .accentColor(.white)
-                            .frame(width: 40, height: 40)
-                    }
-                
                 }
-                .padding(.top, 70)
-           
-                
+    
                 MapViewActionButton(mapState: $mapState
                                     ,showSideMenu: $showSideMenu)
                     .padding(.leading)
                     .padding(.top, 4)
             }
+            
+//            if mapState == .clickedAnnotation{
+//                TrashView()
+//                    .transition(.move(edge: .bottom))
+//            }
+            
             
             if mapState == .locationSelected || mapState == .polylineAdded{
                 RideRequestView()
