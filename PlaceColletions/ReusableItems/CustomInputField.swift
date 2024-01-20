@@ -15,13 +15,12 @@ struct CustomInputField: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12){
-            // 이름
+            
             Text(title)
                 .foregroundColor(.white)
                 .fontWeight(.semibold)
                 .font(.footnote)
             
-            // 텍스트 필드
             if isSecureField {
                 SecureField(placeholder, text: $text)
                     .foregroundColor(.white)
@@ -30,7 +29,6 @@ struct CustomInputField: View {
                     .foregroundColor(.white)
             }
        
-           // 경계선
             Rectangle()
                 .foregroundColor(Color(.init(white: 1, alpha: 0.3)))
                 .frame(width: UIScreen.main.bounds.width - 32,

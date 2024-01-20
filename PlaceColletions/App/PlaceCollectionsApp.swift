@@ -11,7 +11,6 @@ import Firebase
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-      //firebase 서버와 소통을 한다
     FirebaseApp.configure()
 
     return true

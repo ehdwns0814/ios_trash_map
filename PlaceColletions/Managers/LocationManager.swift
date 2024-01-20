@@ -24,11 +24,9 @@ class LocationManager: NSObject, ObservableObject {
 }
 
 extension LocationManager: CLLocationManagerDelegate {
-    // 사용자 위치를 파악하고 업데이트
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
         self.userLocation = location.coordinate
-        // 검색한 정보를 얻어온 후에 지속적으로 같은 정보를 얻어올 필요가 없어서 사용
         locationManager.stopUpdatingLocation()
     }
 }

@@ -33,17 +33,14 @@ struct HomeView: View {
         return cleanFile
     }
     
-    // 자치구, 쓰레기 선택후에 해당되는 데이터만 추린다.
     func loadCSVData() -> [SeoulTrashCan] {
         var csvToStruct = [SeoulTrashCan]()
         
-        // Locate the CSV file
         guard let filePath = Bundle.main.path(forResource: "SeoulTrashCan", ofType: "csv") else {
             print("Error: file not found")
             return []
         }
         
-        // Convert the contents of the file into one very long string
         var data = ""
         do{
             data = try String(contentsOfFile: filePath)
@@ -52,17 +49,12 @@ struct HomeView: View {
             return []
         }
         
-        // Clean up the \r and \n occurances
         data = cleanRows(file: data)
-        
-        // Split the long string into an array of 'rows' of data. Each row is a String.
-        // When we detect the \n
+   
         var rows = data.components(separatedBy: "\n")
 
-        // Remove the header 첫째 줄 지우기
         rows.removeFirst()
         
-        // Now loop around and split each row into columns
         for row in rows {
             let csvColumns = row.components(separatedBy: ";")
             if csvColumns.count == rows.first?.components(separatedBy: ";").count {
@@ -72,7 +64,6 @@ struct HomeView: View {
                 }
             }
         }
-        
         return csvToStruct
     }
     
@@ -125,10 +116,9 @@ struct HomeView: View {
         
     var body: some View {
         Group {
-            if authViewModel.userSession == nil{
+            if authViewModel.userSession != nil{
                 LoginView()
             }else if let user = authViewModel.currentUser {
-                // sideMenuView에서 navigationlink 사용시 화면이 사이드 메뉴 사이드에서 작동함
                 NavigationStack {
                     ZStack{
                         if showSideMenu {
@@ -137,7 +127,7 @@ struct HomeView: View {
                         mapView
                             .offset(x: showSideMenu ? 316 : 0)
                             .shadow(color: showSideMenu ? .black: .clear, radius: 10 )
-                    }// navigationlink가 발생하였을때 showSideMenu 값을 false로 변경한다.
+                    }
                     .onAppear {
                         showSideMenu = false
                     }
@@ -173,7 +163,6 @@ extension HomeView {
                 }
                 
                 if mapState == .noInput || mapState == .selectedTrashType {
-                    // 쓰레기 타입 버튼
                     VStack {
                         HStack {
                             Picker(selection: $selectedDistrict, label: Text("자치구")) {

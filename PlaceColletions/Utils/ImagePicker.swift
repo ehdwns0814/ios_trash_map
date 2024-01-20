@@ -37,10 +37,8 @@ extension ImagePicker {
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info:
             [UIImagePickerController.InfoKey : Any]) {
-            // 이미지를 선택하여서 view에 표시한다.
             guard let image = info[.originalImage] as? UIImage else { return }
             parent.selectedImage = image
-            // 이미지 선택시 ImagePicker창 팝
             parent.presentationMode.wrappedValue.dismiss()
         }
     }
