@@ -60,7 +60,7 @@
 		0E03040E2A10D75B0095A9EA /* RoundedShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedShape.swift; sourceTree = "<group>"; };
 		0E2E322C2A1271BA006D942C /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		0E32E2E52A1DBB2D00F0B92D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		0E4289632A0B756800D9DD51 /* PlaceCollections.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlaceCollections.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E4289632A0B756800D9DD51 /* TrashcanMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrashcanMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E4289662A0B756800D9DD51 /* PlaceCollectionsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCollectionsApp.swift; sourceTree = "<group>"; };
 		0E42896A2A0B756900D9DD51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E42896D2A0B756900D9DD51 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 		0E5969772A11E987001A9712 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0E5E7B1D2A1B37610018E6F4 /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
 		0E72DF752A116D6300A956ED /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		0E9630812A0BDF990091E9F6 /* PlaceCollections-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "PlaceCollections-Info.plist"; sourceTree = "<group>"; };
+		0E9630812A0BDF990091E9F6 /* TrashcanMap-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TrashcanMap-Info.plist"; sourceTree = "<group>"; };
 		0ED2DBAF2A18AEE70046E46E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0ED2DBB22A1900550046E46E /* TrashDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashDetailView.swift; sourceTree = "<group>"; };
 		0ED2DBB42A191E1D0046E46E /* TrashType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashType.swift; sourceTree = "<group>"; };
@@ -155,8 +155,8 @@
 		0E42895A2A0B756800D9DD51 = {
 			isa = PBXGroup;
 			children = (
-				0E9630812A0BDF990091E9F6 /* PlaceCollections-Info.plist */,
-				0E4289652A0B756800D9DD51 /* PlaceColletions */,
+				0E9630812A0BDF990091E9F6 /* TrashcanMap-Info.plist */,
+				0E4289652A0B756800D9DD51 /* TrashcanMap */,
 				0E4289642A0B756800D9DD51 /* Products */,
 				0E32E2E42A1DBB2D00F0B92D /* Frameworks */,
 			);
@@ -165,12 +165,12 @@
 		0E4289642A0B756800D9DD51 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0E4289632A0B756800D9DD51 /* PlaceCollections.app */,
+				0E4289632A0B756800D9DD51 /* TrashcanMap.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0E4289652A0B756800D9DD51 /* PlaceColletions */ = {
+		0E4289652A0B756800D9DD51 /* TrashcanMap */ = {
 			isa = PBXGroup;
 			children = (
 				0E2E322B2A1271A0006D942C /* Setting */,
@@ -188,7 +188,7 @@
 				0ED2DBAF2A18AEE70046E46E /* ContentView.swift */,
 				0ED2DBB22A1900550046E46E /* TrashDetailView.swift */,
 			);
-			path = PlaceColletions;
+			path = TrashcanMap;
 			sourceTree = "<group>";
 		};
 		0E42896C2A0B756900D9DD51 /* Preview Content */ = {
@@ -421,9 +421,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0E4289622A0B756800D9DD51 /* PlaceCollections */ = {
+		0E4289622A0B756800D9DD51 /* TrashcanMap */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0E4289712A0B756900D9DD51 /* Build configuration list for PBXNativeTarget "PlaceCollections" */;
+			buildConfigurationList = 0E4289712A0B756900D9DD51 /* Build configuration list for PBXNativeTarget "TrashcanMap" */;
 			buildPhases = (
 				0E42895F2A0B756800D9DD51 /* Sources */,
 				0E4289602A0B756800D9DD51 /* Frameworks */,
@@ -433,7 +433,7 @@
 			);
 			dependencies = (
 			);
-			name = PlaceCollections;
+			name = TrashcanMap;
 			packageProductDependencies = (
 				0E4289AB2A0B7C4E00D9DD51 /* FirebaseAuth */,
 				0E4289AD2A0B7C4E00D9DD51 /* FirebaseFirestore */,
@@ -442,7 +442,7 @@
 				0E59697A2A1205C6001A9712 /* Kingfisher */,
 			);
 			productName = PlaceColletions;
-			productReference = 0E4289632A0B756800D9DD51 /* PlaceCollections.app */;
+			productReference = 0E4289632A0B756800D9DD51 /* TrashcanMap.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -460,7 +460,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0E42895E2A0B756800D9DD51 /* Build configuration list for PBXProject "PlaceCollections" */;
+			buildConfigurationList = 0E42895E2A0B756800D9DD51 /* Build configuration list for PBXProject "TrashcanMap" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -477,7 +477,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0E4289622A0B756800D9DD51 /* PlaceCollections */,
+				0E4289622A0B756800D9DD51 /* TrashcanMap */,
 			);
 		};
 /* End PBXProject section */
@@ -665,11 +665,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PlaceColletions/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TrashcanMap/Preview Content\"";
 				DEVELOPMENT_TEAM = HQ945SN938;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "PlaceCollections-Info.plist";
+				INFOPLIST_FILE = "TrashcanMap-Info.plist";
 				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 정보를 알기 위해 위치 접근을 허용해 주세요.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -683,7 +683,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.PlaceCollections;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TrashcanMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -698,11 +698,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PlaceColletions/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TrashcanMap/Preview Content\"";
 				DEVELOPMENT_TEAM = HQ945SN938;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "PlaceCollections-Info.plist";
+				INFOPLIST_FILE = "TrashcanMap-Info.plist";
 				INFOPLIST_KEY_NSFileProviderDomainUsageDescription = "";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "위치 정보를 알기 위해 위치 접근을 허용해 주세요.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -716,7 +716,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.PlaceCollections;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TrashcanMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -727,7 +727,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0E42895E2A0B756800D9DD51 /* Build configuration list for PBXProject "PlaceCollections" */ = {
+		0E42895E2A0B756800D9DD51 /* Build configuration list for PBXProject "TrashcanMap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0E42896F2A0B756900D9DD51 /* Debug */,
@@ -736,7 +736,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0E4289712A0B756900D9DD51 /* Build configuration list for PBXNativeTarget "PlaceCollections" */ = {
+		0E4289712A0B756900D9DD51 /* Build configuration list for PBXNativeTarget "TrashcanMap" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0E4289722A0B756900D9DD51 /* Debug */,

@@ -106,9 +106,9 @@ extension UberMapViewRepresentable {
                    let annoTitle = annotation.title;
                    let unwrappedTitle: String = annoTitle ?? ""
                    print("title:\(annoTitle) coordinate: \(annoCoordinate)")
-                    isClickedAnnotation
-                   isClickedAnnotation = true
-                   parent.locationViewModel.selectLocationFromAnnotation(annoTitle: unwrappedTitle, localSearchs: annoCoordinate)
+//                    isClickedAnnotation
+//                   isClickedAnnotation = true
+//                   parent.locationViewModel.selectLocationFromAnnotation(annoTitle: unwrappedTitle, localSearchs: annoCoordinate)
             }
         }
         

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0E4289622A0B756800D9DD51"
-               BuildableName = "PlaceCollections.app"
-               BlueprintName = "PlaceCollections"
-               ReferencedContainer = "container:PlaceCollections.xcodeproj">
+               BuildableName = "TrashcanMap.app"
+               BlueprintName = "TrashcanMap"
+               ReferencedContainer = "container:TrashcanMap.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,9 +44,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0E4289622A0B756800D9DD51"
-            BuildableName = "PlaceCollections.app"
-            BlueprintName = "PlaceCollections"
-            ReferencedContainer = "container:PlaceCollections.xcodeproj">
+            BuildableName = "TrashcanMap.app"
+            BlueprintName = "TrashcanMap"
+            ReferencedContainer = "container:TrashcanMap.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <LocationScenarioReference
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0E4289622A0B756800D9DD51"
-            BuildableName = "PlaceCollections.app"
-            BlueprintName = "PlaceCollections"
-            ReferencedContainer = "container:PlaceCollections.xcodeproj">
+            BuildableName = "TrashcanMap.app"
+            BlueprintName = "TrashcanMap"
+            ReferencedContainer = "container:TrashcanMap.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -16,18 +16,14 @@ class LocationSearchViewModel: NSObject, ObservableObject{
     @Published var addresses: [String] = []
     @Published var coordinates: [CLLocationCoordinate2D] = []
     @Published var results = [MKLocalSearchCompletion]()
-    // 위치 property를 published하면 mapview가 알아 챈다.
     @Published var selectedLocation: Location?
     @Published var tripDistanceMeters: String?
     @Published var searchResults: [MKLocalSearchCompletion] = []
     let locationManager = LocationManager()
     let geocoder = CLGeocoder()
 
+        private let searchCompleter = MKLocalSearchCompleter()
     
-    // 검색 완료 객체
-    private let searchCompleter = MKLocalSearchCompleter()
-    
-    // 텍스트 결과 값이 바뀔 때 마다
     var queryFragment: String = ""{
         didSet {
             searchCompleter.queryFragment = queryFragment
