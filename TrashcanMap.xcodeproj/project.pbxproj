@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E14DB422B5EC41800DEDAB9 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E14DB412B5EC41800DEDAB9 /* ListView.swift */; };
 		0E32E2E62A1DBB2D00F0B92D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E32E2E52A1DBB2D00F0B92D /* CoreLocation.framework */; };
 		0E42896B2A0B756900D9DD51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E42896A2A0B756900D9DD51 /* Assets.xcassets */; };
 		0E42896E2A0B756900D9DD51 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E42896D2A0B756900D9DD51 /* Preview Assets.xcassets */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E14DB412B5EC41800DEDAB9 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		0E32E2E52A1DBB2D00F0B92D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0E4289632A0B756800D9DD51 /* TrashcanMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrashcanMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E42896A2A0B756900D9DD51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			children = (
 				0ED4A2102B5D6E8F004ADEA5 /* HomeView.swift */,
 				0ED4A2122B5D6EB8004ADEA5 /* MapViewRepresentable.swift */,
+				0E14DB412B5EC41800DEDAB9 /* ListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				0ED4A2162B5D7158004ADEA5 /* LocationManager.swift in Sources */,
 				0ED2DBB02A18AEE70046E46E /* ContentView.swift in Sources */,
 				0E8CBF672B5D85CC00D35F62 /* LocationSearchViewModel.swift in Sources */,
+				0E14DB422B5EC41800DEDAB9 /* ListView.swift in Sources */,
 				0ED4A20F2B5D6E62004ADEA5 /* TrashcanApp.swift in Sources */,
 				0ED4A2112B5D6E8F004ADEA5 /* HomeView.swift in Sources */,
 			);
